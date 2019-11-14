@@ -10,8 +10,8 @@ Sappiamo che la prevalenza sulla popolazione generale è di 1:100. Possiamo quin
 	* Anemia (1:4)
 	* Osteopenia (1:3)
 	* Diarrea Cronica (1:20)
-	* Mancata Crescita
-	* Disturbi Genetici
+	* Mancata Crescita (1:140)
+	* Disturbi Genetici (1:1000)
 	* Madre Celiaca (1:100)
 		
 * Il **POCT** avrà esito negativo o inconclusivo, mantenendo la distribuzione degli inconclusivi (1:600), e considerando un numero di test difettosi pari a 1:1200.
@@ -29,7 +29,7 @@ Sappiamo che la prevalenza sulla popolazione generale è di 1:100. Possiamo quin
 	* Anemia (1:2)
 	* Osteopenia (2:5)
 	* Diarrea Cronica (1:3)
-	* Mancata Crescita
+	* Mancata Crescita (1:5)
 	* Disturbi Genetici (1:20)
 	* Madre celiaca (1:18)
 		
