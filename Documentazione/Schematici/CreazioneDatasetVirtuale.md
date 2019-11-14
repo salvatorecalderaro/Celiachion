@@ -3,15 +3,15 @@
 A mio parere (ma vi prego di contribuire in tal senso con critiche e suggerimenti), il dataset virtuale andrà creato in questo modo:
 
 *	Sappiamo che la prevalenza sulla popolazione generale è di 1:100. Possiamo quindi generare un certo numero di batch di pazienti, ognuno composto da 1 paziente positivo ed un numero random di pazienti negativi, estratto casualmente da una distribuzione gaussiana con media 100 e varianza 2 sigma.
-  * Pazienti Negativi
-    * I dati relativi al *Questionario* si limiteranno ai campi evidenziati (Anemia, Osteopenia, Diarrea, Mancata crescita, Disturbi Genetici, Madre celiaca). Si genereranno questionari che rispecchiano la prevalenza statistica delle patologie (ove nota) nella popolazione generale:
-      * Anemia (1:4)
-      * Osteopenia (1:3)
-      * Diarrea Cronica (1:20)
-      * Mancata Crescita
-      * Disturbi Genetici
-      * Madre Celiaca
-  * Il *POCT* avrà esito negativo o inconclusivo, mantenendo la distribuzione degli inconclusivi (1:600), e considerando un numero di test difettosi pari a 1:100.
+	* Pazienti Negativi
+		* I dati relativi al **Questionario** si limiteranno ai campi evidenziati (Anemia, Osteopenia, Diarrea, Mancata crescita, Disturbi Genetici, Madre celiaca). Si genereranno questionari che rispecchiano la prevalenza statistica delle patologie (ove nota) nella popolazione generale:
+			* Anemia (1:4)
+			* Osteopenia (1:3)
+			* Diarrea Cronica (1:20)
+			* Mancata Crescita
+			* Disturbi Genetici
+			* Madre Celiaca (1:100)
+		* Il **POCT** avrà esito negativo o inconclusivo, mantenendo la distribuzione degli inconclusivi (1:600), e considerando un numero di test difettosi pari a 1:100.
   * Nel caso di POCT negativo e Questionario negativo, l’*esame del sangue* avrà valori mancanti. Altrimenti si seguirà la stessa logica del POCT:
     * Prima si genererà un valore per le IGA totali.
     * Nel caso di deficit (1:600), si genererà un valore per le TTG Igg con media 2 e varianza 2 sigma ed il valore delle TTG Iga rimarrà mancante
