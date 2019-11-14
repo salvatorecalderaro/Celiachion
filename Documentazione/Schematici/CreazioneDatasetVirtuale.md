@@ -14,12 +14,12 @@ Sappiamo che la prevalenza sulla popolazione generale è di 1:100. Possiamo quin
 	* Disturbi Genetici
 	* Madre Celiaca (1:100)
 		
-* Il **POCT** avrà esito negativo o inconclusivo, mantenendo la distribuzione degli inconclusivi (1:600), e considerando un numero di test difettosi pari a 1:100.
+* Il **POCT** avrà esito negativo o inconclusivo, mantenendo la distribuzione degli inconclusivi (1:600), e considerando un numero di test difettosi pari a 1:1200.
 		
 * Nel caso di POCT negativo e Questionario negativo, l’**Esame del Sangue** avrà valori mancanti. Altrimenti si seguirà la seguente logica:
-	* Prima si genererà un valore per le IGA totali, seguendo il risultato del POCT (ovvero superiore alla soglia se negativo, inferiore se inconclusivo).
-	* Nel caso di deficit delle IGA totali, si genererà un valore per le TTG Igg con media 2 e varianza 2 stdv ed il valore delle TTG Iga sarà mancante
-	* Negli altri casi si genererà un valore per la TTG Iga da una distribuzione random con media 4.5 e coda molto lunga a destra, ed il valore per le TTG Igg sarà mancante.
+	* Prima si genererà un valore per le IGA totali, seguendo il risultato del POCT (ovvero superiore alla soglia con media 7 e varianza 2 stdev se negativo, inferiore se inconclusivo con distribuzione random tra 0 e .25).
+	* Nel caso di deficit delle IGA totali, si genererà un valore per le TTG Igg con media 2 e varianza 2 stdev ed il valore delle TTG Iga sarà mancante
+	* Negli altri casi si genererà un valore per la TTG Iga da una distribuzione gaussiana con media 4.5 e varianza 2 stdev, ed il valore per le TTG Igg sarà mancante.
 		
 * Nel caso l’analisi del sangue risulti positiva, La **Biopsia** avrà ovviamente esito negativo (classe 1 o 2), altrimenti avrà valore mancante.
 	
@@ -36,8 +36,8 @@ Sappiamo che la prevalenza sulla popolazione generale è di 1:100. Possiamo quin
 * Il **POCT** avrà esito positivo se il questionario ha avuto esito negativo. Altrimenti sarà positivo con prevalenza 9:10, considerando sempre che sia inconclusivo con prevalenza 1:600.
 	
 * Gli **Esami del Sangue** seguiranno una logica simile a quella per i casi negativi, ma saranno sempre positivi:
-	* Prima si genererà un valore per le IGA totali. Nel caso di POCT inconclusivo avrà media .125 e varianza 1 stdv, altrimenti media 8 e varianza 2 sigma.
-	* Nel caso di POCT inconclusivo si genererà un valore per le TTG Igg  con media 14 e varianza 2 stdv ed il valore delle TTG Iga rimarrà mancante. Saranno scartati e rigenerati i valori nel range negativo.
+	* Prima si genererà un valore per le IGA totali. Nel caso di POCT inconclusivo avrà media .125 e varianza 1 stdev, altrimenti media 8 e varianza 2 stdev.
+	* Nel caso di POCT inconclusivo si genererà un valore per le TTG Igg  con media 14 e varianza 2 stdev ed il valore delle TTG Iga rimarrà mancante. Saranno scartati e rigenerati i valori nel range negativo.
 	* Nel caso di POCT positivo si genererà un valore per la TTG Iga da una distribuzione gaussiana con media 24 e coda lunga a destra, ed il valore per le TTG Igg rimarrà mancante. Saranno scartati e rigenerati i valori nel range negativo.
 
 * La **Biopsia** avrà esito positivo (classe 3a, 3b, 3c con distribuzione 1:3 uniforme)
