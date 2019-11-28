@@ -123,4 +123,6 @@ def create_dataset(num):
 
 
 if __name__ == '__main__':
-    create_dataset(100000)
+    print("How many rows do you want? Please enter a multiple of 10")
+    create_dataset(input())
+    
