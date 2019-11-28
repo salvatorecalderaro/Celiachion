@@ -20,6 +20,7 @@ def generate_negative_patient():
             patient.set_blood_tests_from_TTG_iga()
         if patient.blood_tests == constant.POSITIVE_BLOOD_TEST:
             patient.biopsy = constant.NEGATIVE_BIOPSY
+    patient.target = constant.NEGATIVE_TARGET
     return patient
 
 
@@ -63,6 +64,7 @@ def generate_positive_patient():
             patient.set_TTG_iga_for_negative_patient()
         patient.set_blood_tests_from_TTG_iga()
     patient.biopsy = constant.POSITIVE_BIOPSY
+    patient.target = constant.POSITIVE_TARGET
     return patient
 
 
@@ -105,13 +107,14 @@ def test_checker(num):
         return constant.NEGATIVE
 
 
-def create_dataset():
+def create_dataset(num):
+    num_cycles = int(num / 100.00)
     columns = ["Anemia", "Osteopenia", "Diarrea Cronica", "Mancata Crescita", "Disturbi Genetici", "Madre Celiaca",
-               "POCT", "IGA totali", "TTG igg", "TTG_iga", "Esami del sangue", "Biopsia"]
+               "POCT", "IGA totali", "TTG igg", "TTG_iga", "Esami del sangue", "Biopsia", "Class"]
     with open("dataset.csv", "w") as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(columns)
-        for _ in range(0, 10000):
+        for _ in range(0, num_cycles):
             writer.writerow(generate_positive_patient().values())
             mu, sigma = 100.00, 2.00
             num_negative_patients = int(numpy.round(numpy.random.normal(mu, sigma)))
@@ -120,4 +123,4 @@ def create_dataset():
 
 
 if __name__ == '__main__':
-    create_dataset()
+    create_dataset(100000)
