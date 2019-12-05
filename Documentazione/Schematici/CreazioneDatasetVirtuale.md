@@ -33,7 +33,7 @@ Sappiamo che la prevalenza sulla popolazione generale è di 1:100. Possiamo quin
 	* Disturbi Genetici (1:20)
 	* Madre celiaca (1:18)
 		
-* Il **POCT** avrà esito positivo o inconclusivo (1:600) se il questionario ha avuto esito negativo. Altrimenti sarà positivo con prevalenza 9:10, considerando sempre che sia inconclusivo con prevalenza 1:600.
+* Il **POCT** avrà esito positivo o inconclusivo (1:600).
 	
 * Gli **Esami del Sangue** seguiranno una logica simile a quella per i casi negativi, ma saranno sempre positivi:
 	* Prima si genererà un valore per le IGA totali. Nel caso di POCT inconclusivo avrà media .125 e varianza 1 stdev, altrimenti media 8 e varianza 2 stdev.
