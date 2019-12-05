@@ -93,14 +93,8 @@ def generate_POCT_for_positive_patient(patient):
     poct_random_number = numpy.random.randint(1, 601)
     if poct_random_number is 1:
         patient.POCT = constant.INCONCLUSIVE_POCT
-    elif patient.is_test_negative():
-        patient.POCT = constant.POSITIVE_POCT
     else:
-        poct_random_number = numpy.random.randint(1, 11)
-        if poct_random_number is 1:
-            patient.POCT = constant.NEGATIVE_POCT
-        else:
-            patient.POCT = constant.POSITIVE_POCT
+        patient.POCT = constant.POSITIVE_POCT
 
 
 def test_checker(num):
