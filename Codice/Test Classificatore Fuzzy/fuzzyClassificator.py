@@ -4,19 +4,20 @@ import FuzzyClassificator as FC
 import fylearn.fuzzylogic as ff
 from sklearn.model_selection import train_test_split
 from fylearn.fuzzylogic import TriangularSet
+from fylearn.fuzzylogic import TrapezoidalSet
 from FCLogger import SetLevel
 
 
-data_path = "../resource/sick.csv"
-data = pd.read_csv(data_path)
+resource_path = "../resource/"
+data = pd.read_csv(resource_path + "dataset_virtuale.csv")
 
-
-# for sick #
+"""
+# for sick.csv #
 data = data.drop("referral_source", axis=1)
 data = data.drop("TBG", axis=1)
 data = data.drop("TBG_measured", axis=1)
 data = data.replace(["F", "M", "t", "f", "?", "negative", "sick"], [0, 1, 1, 0, np.NaN, 0, 1])
-
+"""
 
 num_columns = data.shape[1] - 1
 
@@ -26,6 +27,7 @@ def prepare_dataset():
         data[column] = pd.to_numeric(data[column])
         replace_with = data[column].mean()
         data[column].fillna(replace_with, inplace=True)
+    data.to_csv(resource_path + "without_nan.csv")
 
 
 def to_fuzzy():
@@ -40,6 +42,7 @@ def to_fuzzy():
             min = ff.min(data[column])
             t = TriangularSet(min, mean, max)
             data[column] = t(np.array(data[column]))
+    data.to_csv(resource_path + "to_fuzzy.csv")
 
 
 def split_dataset():
@@ -155,7 +158,6 @@ def menu():
 def op1():
     prepare_dataset()
     to_fuzzy()
-    data.to_csv("fuzzy.csv")
     split_dataset()
     train_classifier()
 
