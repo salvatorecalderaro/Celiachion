@@ -7,6 +7,7 @@ dataset_path = "../resource/dataset_virtuale.csv"
 columns = ["Anemia", "Osteopenia", "Diarrea Cronica", "Mancata Crescita", "Disturbi Genetici", "Madre Celiaca",
                "POCT", "IGA totali", "TTG igg", "TTG_iga", "Esami del sangue", "Biopsia", "Class"]
 
+
 def generate_negative_patient():
     patient = dataset_row.patient()
     generate_test_for_negative_patient(patient)
@@ -23,7 +24,7 @@ def generate_negative_patient():
             patient.set_blood_tests_from_TTG_iga()
         if patient.blood_tests == constant.POSITIVE_BLOOD_TEST:
             patient.biopsy = constant.NEGATIVE_BIOPSY
-    patient.target = constant.NEGATIVE_TARGET
+    patient.Class = constant.NEGATIVE_CLASS
     return patient
 
 
@@ -67,7 +68,7 @@ def generate_positive_patient():
             patient.set_TTG_iga_for_negative_patient()
         patient.set_blood_tests_from_TTG_iga()
     patient.biopsy = constant.POSITIVE_BIOPSY
-    patient.target = constant.POSITIVE_TARGET
+    patient.Class = constant.POSITIVE_CLASS
     return patient
 
 

@@ -17,7 +17,7 @@ class patient:
         self.TTG_iga = numpy.NaN
         self.blood_tests = numpy.NaN
         self.biopsy = numpy.NaN
-        self.target = numpy.NaN
+        self.Class = numpy.NaN
 
     def is_POCT_negative(self):
         if self.POCT is constant.NEGATIVE_POCT:
@@ -114,5 +114,5 @@ class patient:
         values.append(self.TTG_iga)
         values.append(self.blood_tests)
         values.append(self.biopsy)
-        values.append(self.target)
+        values.append(self.Class)
         return values
