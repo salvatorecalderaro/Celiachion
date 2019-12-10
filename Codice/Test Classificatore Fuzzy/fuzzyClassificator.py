@@ -1,31 +1,33 @@
 import pandas as pd
 import numpy as np
-import FuzzyClassificator as FC
+import FuzzyClassificator as fc
 import fylearn.fuzzylogic as ff
 from sklearn.model_selection import train_test_split
 from fylearn.fuzzylogic import TriangularSet
-from fylearn.fuzzylogic import TrapezoidalSet
 from FCLogger import SetLevel
+import constant
 
 
 resource_path = "../resource/"
-data = pd.read_csv(resource_path + "dataset_virtuale.csv")
-
-"""
-# for sick.csv #
-data = data.drop("referral_source", axis=1)
-data = data.drop("TBG", axis=1)
-data = data.drop("TBG_measured", axis=1)
-data = data.replace(["F", "M", "t", "f", "?", "negative", "sick"], [0, 1, 1, 0, np.NaN, 0, 1])
-"""
-
+dataset_file = "sick.csv"
+data = pd.read_csv(resource_path + dataset_file)
 num_columns = data.shape[1] - 1
 
 
 def prepare_dataset():
+    global num_columns
+    global data
+    if dataset_file == "sick.csv":
+        data = data.drop("referral_source", axis=1)
+        data = data.drop("TBG", axis=1)
+        data = data.drop("TBG_measured", axis=1)
+        data = data.replace(["F", "M", "t", "f", "?", "negative", "sick"], [0, 1, 1, 0, np.NaN, 0, 1])
+    if dataset_file == "cardiovascular.csv":
+        data = data.drop("id", axis=1)
+    num_columns = data.shape[1] - 1
     for column in data.columns:
         data[column] = pd.to_numeric(data[column])
-        replace_with = data[column].mean()
+        replace_with = float(data[column].sum()) / data.shape[0]
         data[column].fillna(replace_with, inplace=True)
     data.to_csv(resource_path + "without_nan.csv")
 
@@ -34,14 +36,21 @@ def to_fuzzy():
     for column in data.columns[0:-1]:
         x = np.unique(data[column])
         if 1 < len(x) < 4 and x.__contains__(1) and x.__contains__(0):
-            t = TriangularSet(0, 1, 1)
-            data[column] = t(np.array(data[column]))
+            t = TriangularSet(constant.BINARY_MIN, constant.BINARY_MEAN, constant.BINARY_MAX)
         else:
-            max = ff.max(data[column])
-            mean = ff.mean(data[column])
-            min = ff.min(data[column])
-            t = TriangularSet(min, mean, max)
-            data[column] = t(np.array(data[column]))
+            if dataset_file == "dataset_virtuale.csv":
+                if column == "IGA totali":
+                    t = TriangularSet(constant.MIN_IGA, constant.MEAN_IGA, constant.MAX_IGA)
+                elif column == "TTG IGG":
+                    t = TriangularSet(constant.TTG_IGG_MIN, constant.TTG_IGG_MEAN, constant.TTG_IGG_MAX)
+                elif column == "TTG IGG":
+                    t = TriangularSet(constant.TTG_IGA_MIN, constant.TTG_IGA_MEAN, constant.TTG_IGA_MAX)
+            else:
+                max_value = ff.max(data[column])
+                mean_value = ff.mean(data[column])
+                min_value = ff.min(data[column])
+                t = TriangularSet(min_value, mean_value, max_value)
+        data[column] = t(np.array(data[column]))
     data.to_csv(resource_path + "to_fuzzy.csv")
 
 
@@ -52,10 +61,10 @@ def split_dataset():
 
 
 def train_classifier():
-    FC.EthalonDataFile = "ethalons.dat"
-    FC.candidatesDataFile = "candidates.dat"
-    FC.neuroNetworkFile = "network.xml"
-    FC.sepSymbol = ","
+    fc.EthalonDataFile = "ethalons.dat"
+    fc.candidatesDataFile = "candidates.dat"
+    fc.neuroNetworkFile = "network.xml"
+    fc.sepSymbol = ","
     SetLevel("DEBUG")
     parameters = {
         "config": str(num_columns) + ",3,2,1",
@@ -65,13 +74,13 @@ def train_classifier():
         "epsilon": 0.05,
         "stop": 1
     }
-    FC.Main(learnParameters=parameters)
+    fc.Main(learnParameters=parameters)
 
 
 def classify():
-    FC.reportDataFile = "report.txt"
-    FC.sepSymbol = ","
-    FC.showExpected = True
+    fc.reportDataFile = "report.txt"
+    fc.sepSymbol = ","
+    fc.showExpected = True
     SetLevel("DEBUG")
     parameters = {
         "config": str(num_columns) + ",3,2,1",
@@ -81,33 +90,31 @@ def classify():
         "epsilon": 0.05,
         "stop": 1
     }
-    FC.Main(classifyParameters=parameters)
+    fc.Main(classifyParameters=parameters)
 
 
 def evaluate_classifier(report_path):
-    TN = 0
-    TP = 0
-    FN = 0
-    FP = 0
+    confusion_matrix = np.zeros((2, 2))
     counter = 0
     med_counter = 0
     med_positive = 0
     med_negative = 0
     with open(report_path, 'r') as report_file:
         for line in report_file:
-            if line.__contains__("Output"):
+            index = line.find("Output")
+            if index != -1:
                 counter += 1
-                line = line[line.find("Output"):]
+                line = line[index:]
                 if line.__contains__("Min") or line.__contains__("Low"):
                     if line.__contains__("0"):
-                        TN += 1
+                        confusion_matrix[0][0] += 1
                     else:
-                        FN += 1
+                        confusion_matrix[1][0] += 1
                 elif line.__contains__("Max") or line.__contains__("High"):
                     if line.__contains__("1"):
-                        TP += 1
+                        confusion_matrix[1][1] += 1
                     else:
-                        FP += 1
+                        confusion_matrix[0][1] += 1
                 else:
                     med_counter += 1
                     if line.__contains__("0"):
@@ -116,31 +123,45 @@ def evaluate_classifier(report_path):
                         med_positive += 1
     if med_negative > med_positive:
         # consideriamo i valori med come target negativo
-        TN += med_negative
-        FN += med_positive
+        confusion_matrix[0][0] += med_negative
+        confusion_matrix[1][0] += med_positive
+        med_value = "negative"
     else:
-        TP += med_positive
-        FP += med_negative
+        confusion_matrix[1][1] += med_positive
+        confusion_matrix[0][1] += med_negative
+        med_value = "positive"
 
-    print("Tot values classified " + str(counter))
-    print("Number of med values " + str(med_counter))
-    print("TN " + str(TN))
-    print("TP " + str(TP))
-    print("FN " + str(FN))
-    print("FP " + str(FP))
+    print("Tot values classified: " + str(counter))
+    print("Number of med values: " + str(med_counter))
+    print("Negative Med correspondence: " + str(med_negative))
+    print("Positive Med correspondence: " + str(med_positive))
+    print("Med value chosen: " + str(med_value))
+    print("\nConfusion Matrix")
+    print("\tTN\t\tFP\n\tFN\t\tTP")
+    print(confusion_matrix)
+    print()
 
-    accuracy = (TP + TN) / (TP + TN + FP + FN)
-    precision = TP / (TP + FP)
-    specificity = TN / (TN + FP)
-    recall = TP / (TP + FN)
+    '''
+    TN FP
+    FN TP
+    '''
+    tn = confusion_matrix[0][0]
+    tp = confusion_matrix[1][1]
+    fn = confusion_matrix[1][0]
+    fp = confusion_matrix[0][1]
+
+    accuracy = (tp + tn) / (tp + tn + fp + fn)
+    precision = tp / (tp + fp)
+    specificity = tn / (tn + fp)
+    recall = tp / (tp + fn)
     print_report(accuracy, precision, specificity, recall)
 
 
-def print_report(acc, prec, spec, rec):
-    print("Accuracy: {0}%".format(acc * 100))
-    print("Precision: {0}%".format(prec * 100))
-    print("Specificity: {0}%".format(spec * 100))
-    print("Recall: {0}%\n".format(rec * 100))
+def print_report(accuracy, precision, specificity, recall):
+    print("Accuracy: {0} %".format(round(accuracy * 100, 2)))
+    print("Precision: {0} %".format(round(precision * 100, 2)))
+    print("Specificity: {0} %".format(round(specificity * 100, 2)))
+    print("Recall: {0} %\n".format(round(recall * 100, 2)))
 
 
 def menu():
@@ -183,84 +204,3 @@ while c != 0:
         break
     else:
         print("Unknown command")
-
-
-"""
-def evaluate_classifier(realClass_path, report_path):
-    Y_test = []
-    Y_pred = []
-    count0 = 0
-    count1 = 0
-
-    with open(realClass_path, 'rt') as myfile:
-        for line in myfile:
-            Y_test.append(line.rstrip('\n'))
-
-    for i in range(len(Y_test)):
-        Y_test[i] = pd.to_numeric(Y_test[i])
-
-    index = 0
-    with open(report_path, 'r') as searchfile:
-        for line in islice(searchfile, 13, None):
-            if "Med" in line:
-                if Y_test[index] == 0:
-                    count0 += 1
-                    index += 1
-                else:
-                    count1 += 1
-                    index += 1
-            else:
-                index += 1
-                continue
-
-    if count0 > count1:
-        val_med = 0
-    else:
-        val_med = 1
-
-    with open(report_path, 'r') as searchfile:
-        for line in islice(searchfile, 13, None):
-            if "Min" in line:
-                Y_pred.append(0)
-            elif "Low" in line:
-                Y_pred.append(0)
-            elif "Med" in line:
-                Y_pred.append(val_med)
-            elif "High" in line:
-                Y_pred.append(1)
-            elif "Max" in line:
-                Y_pred.append(1)
-            else:
-                continue
-
-    confusion_matrix = np.zeros((2, 2))
-
-    for i in range(len(Y_pred)):
-        if Y_pred[i] == 0:
-            if Y_test[i] == 0:
-                confusion_matrix[0][0] += 1.0
-            else:
-                confusion_matrix[1][0] += 1.0
-        else:
-            if Y_test[i] == 0:
-                confusion_matrix[0][1] += 1.0
-            else:
-                confusion_matrix[1][1] += 1.0
-
-    '''
-    TP FN
-    FP TN
-    '''
-
-    TP = confusion_matrix[0][0]
-    FN = confusion_matrix[0][1]
-    FP = confusion_matrix[1][0]
-    TN = confusion_matrix[1][1]
-
-    accuracy = (TP + TN) / (TP + TN + FP + FN)
-    precision = TP / (TP + FP)
-    specificity = TN / (TN + FP)
-    recall = TP / (TP + FN)
-
-    return accuracy, precision, specificity, recall
-"""
