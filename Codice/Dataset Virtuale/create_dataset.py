@@ -5,7 +5,7 @@ import dataset_row
 
 dataset_path = "../resource/dataset_virtuale.csv"
 columns = ["Anemia", "Osteopenia", "Diarrea Cronica", "Mancata Crescita", "Disturbi Genetici", "Madre Celiaca",
-               "POCT", "IGA totali", "TTG igg", "TTG_iga", "Esami del sangue", "Biopsia", "Class"]
+               "POCT", "IGA totali", "TTG IGG", "TTG_IGA", "Esami del sangue", "Biopsia", "Class"]
 
 
 def generate_negative_patient():
@@ -106,7 +106,7 @@ def test_checker(num):
 
 
 def create_dataset(num):
-    num_cycles = int(int(num) / 100.00)
+    num_cycles = int(num / 100.00)
     with open(dataset_path, "w") as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(columns)
@@ -120,4 +120,9 @@ def create_dataset(num):
 
 if __name__ == '__main__':
     print("How many rows do you want? Please enter a multiple of 10")
-    create_dataset(input())
+    temp = None
+    temp = int(input())
+    while type(temp) is not int:
+        print("Incorret input. Please enter a multiple of 10")
+        temp = int(input())
+    create_dataset(temp)
