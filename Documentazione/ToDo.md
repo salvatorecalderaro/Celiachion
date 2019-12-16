@@ -9,7 +9,7 @@ Fatto
 # Fase C
 ## Test del Classificatore col dataset virtuale
 - Riformulazione delle classi fuzzy per l esame del sangue utilizzando la conoscenza pregressa
-  - Per i valori binari: triangolare con .5, .5
+  - Per i valori binari: triangolare con 1, 1
   - Per IGA totali: triangolare con .4, 1
   - per TTG IGA: triangolare con 9, 16
   
