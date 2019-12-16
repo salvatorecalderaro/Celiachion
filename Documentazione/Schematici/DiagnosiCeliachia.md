@@ -34,7 +34,7 @@ Per prima cosa si misurano le IGA totali:
 * Per valori >.25 ml/dl si procede all’esame delle TTG Iga
 	* 0:9 U/ml danno esito negativo
 	* 9-16 U/ml sono considerate borderline
-	* >16 U/ml da esito positivo (prevalenza 1:100)
+	* > 16 U/ml da esito positivo (prevalenza 1:100)
 
 ## Passo 3 (in caso di positività al passo 2)
 Si procede alla Biopsia. IL paziente sarà classificato come segue:
