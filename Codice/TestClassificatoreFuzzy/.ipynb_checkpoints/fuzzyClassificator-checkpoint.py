@@ -8,8 +8,8 @@ from FCLogger import SetLevel
 import constant
 
 
-resource_path = "Dataset/"
-dataset_file = "dataset_virtuale.csv"
+resource_path = "../resource/"
+dataset_file = "sick.csv"
 data = pd.read_csv(resource_path + dataset_file)
 num_columns = data.shape[1] - 1
 

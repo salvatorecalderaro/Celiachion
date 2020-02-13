@@ -1,0 +1,552 @@
+FuzzyClassificator.py    [Line:340]	INFO      [2020-02-13 10:34:28,327]	--------------------------------------------------------------------------------
+FuzzyClassificator.py    [Line:341]	INFO      [2020-02-13 10:34:28,328]	FuzzyClassificator version: 1.3.81
+FuzzyClassificator.py    [Line:342]	INFO      [2020-02-13 10:34:28,329]	Learning mode activated.
+FuzzyClassificator.py    [Line:343]	INFO      [2020-02-13 10:34:28,331]	Log file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/fc.log
+FuzzyClassificator.py    [Line:107]	INFO      [2020-02-13 10:34:28,331]	----------------------------------------
+FuzzyClassificator.py    [Line:108]	INFO      [2020-02-13 10:34:28,333]	Step 1. Creating PyBrain network instance with pre-defined config parameters.
+PyBrainLearning.py       [Line:295]	DEBUG     [2020-02-13 10:34:28,347]	Row added to ignore list: 1 (index: 0)
+FuzzyClassificator.py    [Line:210]	DEBUG     [2020-02-13 10:34:28,348]	Instance of fuzzy network initialized with parameters:
+FuzzyClassificator.py    [Line:211]	DEBUG     [2020-02-13 10:34:28,348]	    {'config': '11,3,2,1', 'epochs': 100, 'rate': 0.5, 'momentum': 0.5, 'epsilon': 0.05, 'stop': 1}
+FuzzyClassificator.py    [Line:212]	DEBUG     [2020-02-13 10:34:28,350]	File with ethalons data: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/ethalons.dat
+FuzzyClassificator.py    [Line:213]	DEBUG     [2020-02-13 10:34:28,351]	File for saving Neuronet: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+FuzzyClassificator.py    [Line:214]	DEBUG     [2020-02-13 10:34:28,352]	Classification Report file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/report.txt
+FuzzyClassificator.py    [Line:215]	DEBUG     [2020-02-13 10:34:28,353]	For measurements used fuzzy scale:
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:34:28,354]	FuzzyScale = {Min, Low, Med, High, Max}
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:34:28,355]	    Min = <Hyperbolic(x, {"a": 8, "b": 20, "c": 0}), [0.0, 0.23]>
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:34:28,356]	    Low = <Bell(x, {"a": 0.17, "b": 0.23, "c": 0.34}), [0.17, 0.4]>
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:34:28,357]	    Med = <Bell(x, {"a": 0.34, "b": 0.4, "c": 0.6}), [0.34, 0.66]>
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:34:28,358]	    High = <Bell(x, {"a": 0.6, "b": 0.66, "c": 0.77}), [0.6, 0.83]>
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:34:28,359]	    Max = <Parabolic(x, {"a": 0.77, "b": 0.95}), [0.77, 1.0]>
+FuzzyClassificator.py    [Line:240]	INFO      [2020-02-13 10:34:28,360]	----------------------------------------
+FuzzyClassificator.py    [Line:241]	INFO      [2020-02-13 10:34:28,362]	Step 2. Parsing raw data file with ethalons.
+PyBrainLearning.py       [Line:336]	INFO      [2020-02-13 10:34:28,362]	Parsing file with raw data...
+PyBrainLearning.py       [Line:343]	DEBUG     [2020-02-13 10:34:28,364]	Opened file: ethalons.dat
+PyBrainLearning.py       [Line:344]	DEBUG     [2020-02-13 10:34:28,365]	Separator symbol used: ,
+PyBrainLearning.py       [Line:345]	DEBUG     [2020-02-13 10:34:28,366]	Ignored row indexes (1st row is 0): [0]
+PyBrainLearning.py       [Line:346]	DEBUG     [2020-02-13 10:34:28,367]	Ignored column indexes (1st column is 0): []
+PyBrainLearning.py       [Line:367]	DEBUG     [2020-02-13 10:34:28,369]	Parsed raw-data (without ignored rows and columns):
+PyBrainLearning.py       [Line:378]	DEBUG     [2020-02-13 10:34:28,370]	    [0.0, 1.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:379]	DEBUG     [2020-02-13 10:34:28,371]	    [0.0, 0.0, ..., 0.009708737864077669, 0]
+PyBrainLearning.py       [Line:380]	DEBUG     [2020-02-13 10:34:28,372]	    [ ... skipped ... ]
+PyBrainLearning.py       [Line:381]	DEBUG     [2020-02-13 10:34:28,372]	    [0.0, 0.0, ..., 0.009708737864077669, 0]
+PyBrainLearning.py       [Line:382]	DEBUG     [2020-02-13 10:34:28,374]	    [1.0, 0.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:384]	INFO      [2020-02-13 10:34:28,374]	File with raw data successfully parsed.
+PyBrainLearning.py       [Line:71]	INFO      [2020-02-13 10:34:28,376]	Defuzzyficating raw data ...
+FuzzyClassificator.py    [Line:259]	INFO      [2020-02-13 10:34:28,377]	----------------------------------------
+FuzzyClassificator.py    [Line:260]	INFO      [2020-02-13 10:34:28,378]	Step 3. Preparing PyBrain dataset.
+PyBrainLearning.py       [Line:406]	INFO      [2020-02-13 10:34:28,379]	Converting parsed and defuzzificated raw-data into PyBrain dataset format...
+PyBrainLearning.py       [Line:426]	DEBUG     [2020-02-13 10:34:28,382]	PyBrain dataset vectors, inputs and outputs (targets):
+PyBrainLearning.py       [Line:430]	DEBUG     [2020-02-13 10:34:28,396]	- input vectors, dim(11, 72):
+PyBrainLearning.py       [Line:437]	DEBUG     [2020-02-13 10:34:28,397]	    [[0.         1.         0.         0.         0.         0.
+PyBrainLearning.py       [Line:438]	DEBUG     [2020-02-13 10:34:28,398]	      0.         0.         1.         0.         0.        ]
+PyBrainLearning.py       [Line:439]	DEBUG     [2020-02-13 10:34:28,399]	     [ ... skipped ... ]
+PyBrainLearning.py       [Line:440]	DEBUG     [2020-02-13 10:34:28,400]	     [1.         0.         0.         0.         0.         0.
+PyBrainLearning.py       [Line:441]	DEBUG     [2020-02-13 10:34:28,401]	      0.         0.         1.         0.         0.        ]]
+PyBrainLearning.py       [Line:445]	DEBUG     [2020-02-13 10:34:28,403]	- output vectors, dim(1, 72):
+PyBrainLearning.py       [Line:452]	DEBUG     [2020-02-13 10:34:28,405]	    [[0.]
+PyBrainLearning.py       [Line:453]	DEBUG     [2020-02-13 10:34:28,406]	     [0.]
+PyBrainLearning.py       [Line:454]	DEBUG     [2020-02-13 10:34:28,407]	     [ ... skipped ... ]
+PyBrainLearning.py       [Line:455]	DEBUG     [2020-02-13 10:34:28,408]	     [0.]
+PyBrainLearning.py       [Line:456]	DEBUG     [2020-02-13 10:34:28,409]	     [0.]]
+PyBrainLearning.py       [Line:458]	INFO      [2020-02-13 10:34:28,410]	PyBrain dataset successfully prepared.
+FuzzyClassificator.py    [Line:278]	INFO      [2020-02-13 10:34:28,411]	----------------------------------------
+FuzzyClassificator.py    [Line:279]	INFO      [2020-02-13 10:34:28,412]	Step 4. Initialize empty PyBrain network for learning or reading network configuration from file.
+PyBrainLearning.py       [Line:472]	INFO      [2020-02-13 10:34:28,413]	Creating PyBrain network...
+PyBrainLearning.py       [Line:482]	INFO      [2020-02-13 10:34:28,414]	Neuronet configuration: Config = <inputs, {layers}, outputs>
+PyBrainLearning.py       [Line:483]	INFO      [2020-02-13 10:34:28,415]	    - inputs is dimension of all input vectors: 11
+PyBrainLearning.py       [Line:484]	INFO      [2020-02-13 10:34:28,416]	    - outputs is dimension of all output vectors: 1
+PyBrainLearning.py       [Line:485]	INFO      [2020-02-13 10:34:28,417]	    - count of hidden layers for Neuronet: 2
+PyBrainLearning.py       [Line:489]	INFO      [2020-02-13 10:34:28,418]	      ... dimension of 0 hidden layer: 3
+PyBrainLearning.py       [Line:489]	INFO      [2020-02-13 10:34:28,419]	      ... dimension of 1 hidden layer: 2
+PyBrainLearning.py       [Line:506]	INFO      [2020-02-13 10:34:28,423]	PyBrain network successfully created.
+FuzzyClassificator.py    [Line:301]	INFO      [2020-02-13 10:34:28,424]	----------------------------------------
+FuzzyClassificator.py    [Line:302]	INFO      [2020-02-13 10:34:28,425]	Step 5. Creating PyBrain trainer.
+PyBrainLearning.py       [Line:520]	INFO      [2020-02-13 10:34:28,426]	Initializing PyBrain backpropagating trainer...
+PyBrainLearning.py       [Line:528]	INFO      [2020-02-13 10:34:28,427]	Trainer using parameters:
+PyBrainLearning.py       [Line:529]	INFO      [2020-02-13 10:34:28,428]	    - PyBrain network previously created,
+PyBrainLearning.py       [Line:530]	INFO      [2020-02-13 10:34:28,429]	    - PyBrain dataset previously created,
+PyBrainLearning.py       [Line:531]	INFO      [2020-02-13 10:34:28,430]	    - epoch parameter: 100
+PyBrainLearning.py       [Line:532]	INFO      [2020-02-13 10:34:28,431]	    - network learning rate parameter: 0.5
+PyBrainLearning.py       [Line:533]	INFO      [2020-02-13 10:34:28,432]	    - momentum parameter: 0.5
+PyBrainLearning.py       [Line:534]	INFO      [2020-02-13 10:34:28,433]	    - epsilon parameter: 0.05
+PyBrainLearning.py       [Line:535]	INFO      [2020-02-13 10:34:28,435]	    - stop parameter: 1.0%
+PyBrainLearning.py       [Line:545]	INFO      [2020-02-13 10:34:28,436]	PyBrain network successfully created.
+FuzzyClassificator.py    [Line:319]	INFO      [2020-02-13 10:34:28,437]	----------------------------------------
+FuzzyClassificator.py    [Line:320]	INFO      [2020-02-13 10:34:28,437]	Step 6. Starts learning and saving network configuration to file.
+PyBrainLearning.py       [Line:755]	INFO      [2020-02-13 10:34:28,439]	Max epochs: 100
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:28,440]	Progress: 1.00% (epoch: 1 in 100)
+PyBrainLearning.py       [Line:559]	DEBUG     [2020-02-13 10:34:28,522]	Autosaving - enabled. Trying to save network as PyBrain xml-formatted file...
+PyBrainLearning.py       [Line:563]	INFO      [2020-02-13 10:34:28,527]	Current network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:28,528]	Progress: 2.00% (epoch: 2 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:28,613]	Progress: 3.00% (epoch: 3 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:28,688]	Progress: 4.00% (epoch: 4 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:28,757]	Progress: 5.00% (epoch: 5 in 100, total time: 0:00:00, time remaining: 0:00:06)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:34:28,786]	    - false classificated of vectors: 20.8% (15 of 72)
+PyBrainLearning.py       [Line:804]	INFO      [2020-02-13 10:34:28,787]	Best network found:
+PyBrainLearning.py       [Line:805]	INFO      [2020-02-13 10:34:28,788]	    Config: (11, 3, 2, 1)
+PyBrainLearning.py       [Line:806]	INFO      [2020-02-13 10:34:28,788]	    Epoch: 5
+PyBrainLearning.py       [Line:807]	INFO      [2020-02-13 10:34:28,790]	    Number of error vectors (Euclidian norm > epsilon): 20.8% (15 of 72)
+PyBrainLearning.py       [Line:820]	INFO      [2020-02-13 10:34:28,805]	Best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.xml
+PyBrainLearning.py       [Line:821]	INFO      [2020-02-13 10:34:28,806]	Common information about best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.txt
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:28,882]	Progress: 6.00% (epoch: 6 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:28,951]	Progress: 7.00% (epoch: 7 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:29,024]	Progress: 8.00% (epoch: 8 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:29,095]	Progress: 9.00% (epoch: 9 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:29,162]	Progress: 10.00% (epoch: 10 in 100, total time: 0:00:01, time remaining: 0:00:07)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:34:29,191]	    - false classificated of vectors: 5.6% (4 of 72)
+PyBrainLearning.py       [Line:804]	INFO      [2020-02-13 10:34:29,192]	Best network found:
+PyBrainLearning.py       [Line:805]	INFO      [2020-02-13 10:34:29,193]	    Config: (11, 3, 2, 1)
+PyBrainLearning.py       [Line:806]	INFO      [2020-02-13 10:34:29,194]	    Epoch: 10
+PyBrainLearning.py       [Line:807]	INFO      [2020-02-13 10:34:29,195]	    Number of error vectors (Euclidian norm > epsilon): 5.6% (4 of 72)
+PyBrainLearning.py       [Line:820]	INFO      [2020-02-13 10:34:29,211]	Best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.xml
+PyBrainLearning.py       [Line:821]	INFO      [2020-02-13 10:34:29,212]	Common information about best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.txt
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:29,280]	Progress: 11.00% (epoch: 11 in 100)
+PyBrainLearning.py       [Line:559]	DEBUG     [2020-02-13 10:34:29,352]	Autosaving - enabled. Trying to save network as PyBrain xml-formatted file...
+PyBrainLearning.py       [Line:563]	INFO      [2020-02-13 10:34:29,356]	Current network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:29,356]	Progress: 12.00% (epoch: 12 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:29,429]	Progress: 13.00% (epoch: 13 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:29,625]	Progress: 14.00% (epoch: 14 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:34:29,694]	Progress: 15.00% (epoch: 15 in 100, total time: 0:00:01, time remaining: 0:00:07)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:34:29,723]	    - false classificated of vectors: 0.0% (0 of 72)
+PyBrainLearning.py       [Line:804]	INFO      [2020-02-13 10:34:29,724]	Best network found:
+PyBrainLearning.py       [Line:805]	INFO      [2020-02-13 10:34:29,725]	    Config: (11, 3, 2, 1)
+PyBrainLearning.py       [Line:806]	INFO      [2020-02-13 10:34:29,726]	    Epoch: 15
+PyBrainLearning.py       [Line:807]	INFO      [2020-02-13 10:34:29,727]	    Number of error vectors (Euclidian norm > epsilon): 0.0% (0 of 72)
+PyBrainLearning.py       [Line:820]	INFO      [2020-02-13 10:34:29,743]	Best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.xml
+PyBrainLearning.py       [Line:821]	INFO      [2020-02-13 10:34:29,744]	Common information about best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.txt
+PyBrainLearning.py       [Line:825]	INFO      [2020-02-13 10:34:29,745]	Current percent of false classificated vectors is 0.0% less than stop value 1.0%.
+PyBrainLearning.py       [Line:559]	DEBUG     [2020-02-13 10:34:29,746]	Autosaving - enabled. Trying to save network as PyBrain xml-formatted file...
+PyBrainLearning.py       [Line:563]	INFO      [2020-02-13 10:34:29,749]	Current network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+PyBrainLearning.py       [Line:842]	INFO      [2020-02-13 10:34:29,751]	Current network replace with the best network.
+PyBrainLearning.py       [Line:845]	INFO      [2020-02-13 10:34:29,752]	Duration of learning: 0:00:01
+FuzzyClassificator.py    [Line:356]	INFO      [2020-02-13 10:34:29,753]	----------------------------------------
+FuzzyClassificator.py    [Line:357]	INFO      [2020-02-13 10:34:29,754]	Successful finish all Learning steps.
+PyBrainLearning.py       [Line:698]	DEBUG     [2020-02-13 10:34:29,755]	Classification results:
+PyBrainLearning.py       [Line:706]	DEBUG     [2020-02-13 10:34:29,756]	    Header:    [Anemia Osteopenia ... TTG_IGA Esami del sangue]	[Class]
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,758]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,759]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,761]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,763]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,765]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,766]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,768]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,769]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,771]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,773]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,775]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,776]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,778]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,779]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,781]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,783]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,785]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,786]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,788]	        Input: [0.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,790]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,791]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,793]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,794]	        Input: [0.0, 0.0, ..., 0.0, 1.0]	Output: ['Max']	Expected: ['1']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,796]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,797]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,799]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,800]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,802]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,803]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,805]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,807]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,810]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,812]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,813]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,815]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,817]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,818]	        Input: [0.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,820]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,821]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,823]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,824]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,827]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,828]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,830]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,832]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,833]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,835]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,837]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,838]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,840]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,842]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,844]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,846]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,847]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,849]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,851]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,852]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,854]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,856]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,857]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,859]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,861]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,863]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,864]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,866]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,868]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,869]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,871]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,873]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,875]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,877]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:34:29,878]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+FuzzyClassificator.py    [Line:365]	INFO      [2020-02-13 10:34:29,879]	Learning mode deactivated.
+FuzzyClassificator.py    [Line:632]	INFO      [2020-02-13 10:34:29,880]	FuzzyClassificator work finished with exitCode = 0
+FuzzyClassificator.py    [Line:633]	INFO      [2020-02-13 10:34:29,881]	--------------------------------------------------------------------------------
+FuzzyClassificator.py    [Line:512]	INFO      [2020-02-13 10:34:36,253]	--------------------------------------------------------------------------------
+FuzzyClassificator.py    [Line:513]	INFO      [2020-02-13 10:34:36,254]	FuzzyClassificator version: 1.3.81
+FuzzyClassificator.py    [Line:514]	INFO      [2020-02-13 10:34:36,255]	Classificator mode activated.
+FuzzyClassificator.py    [Line:515]	INFO      [2020-02-13 10:34:36,256]	Log file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/fc.log
+FuzzyClassificator.py    [Line:377]	INFO      [2020-02-13 10:34:36,257]	----------------------------------------
+FuzzyClassificator.py    [Line:378]	INFO      [2020-02-13 10:34:36,258]	Step 1. Creating PyBrain network instance.
+PyBrainLearning.py       [Line:295]	DEBUG     [2020-02-13 10:34:36,273]	Row added to ignore list: 1 (index: 0)
+FuzzyClassificator.py    [Line:410]	DEBUG     [2020-02-13 10:34:36,274]	Instance of fuzzy network initialized with parameters:
+FuzzyClassificator.py    [Line:411]	DEBUG     [2020-02-13 10:34:36,275]	{'config': '11,3,2,1', 'epochs': 100, 'rate': 0.5, 'momentum': 0.5, 'epsilon': 0.05, 'stop': 1}
+FuzzyClassificator.py    [Line:412]	DEBUG     [2020-02-13 10:34:36,276]	File with candidates data: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/candidates.dat
+FuzzyClassificator.py    [Line:413]	DEBUG     [2020-02-13 10:34:36,277]	File for saving Neuronet: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+FuzzyClassificator.py    [Line:414]	DEBUG     [2020-02-13 10:34:36,278]	Classification Report file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/report.txt
+FuzzyClassificator.py    [Line:415]	DEBUG     [2020-02-13 10:34:36,279]	For measurements used fuzzy scale:
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:34:36,280]	FuzzyScale = {Min, Low, Med, High, Max}
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:34:36,281]	    Min = <Hyperbolic(x, {"a": 8, "b": 20, "c": 0}), [0.0, 0.23]>
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:34:36,282]	    Low = <Bell(x, {"a": 0.17, "b": 0.23, "c": 0.34}), [0.17, 0.4]>
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:34:36,283]	    Med = <Bell(x, {"a": 0.34, "b": 0.4, "c": 0.6}), [0.34, 0.66]>
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:34:36,284]	    High = <Bell(x, {"a": 0.6, "b": 0.66, "c": 0.77}), [0.6, 0.83]>
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:34:36,285]	    Max = <Parabolic(x, {"a": 0.77, "b": 0.95}), [0.77, 1.0]>
+FuzzyClassificator.py    [Line:440]	INFO      [2020-02-13 10:34:36,286]	----------------------------------------
+FuzzyClassificator.py    [Line:441]	INFO      [2020-02-13 10:34:36,287]	Step 2. Parsing raw data file with candidates.
+PyBrainLearning.py       [Line:336]	INFO      [2020-02-13 10:34:36,288]	Parsing file with raw data...
+PyBrainLearning.py       [Line:343]	DEBUG     [2020-02-13 10:34:36,289]	Opened file: candidates.dat
+PyBrainLearning.py       [Line:344]	DEBUG     [2020-02-13 10:34:36,290]	Separator symbol used: ,
+PyBrainLearning.py       [Line:345]	DEBUG     [2020-02-13 10:34:36,291]	Ignored row indexes (1st row is 0): [0]
+PyBrainLearning.py       [Line:346]	DEBUG     [2020-02-13 10:34:36,292]	Ignored column indexes (1st column is 0): []
+PyBrainLearning.py       [Line:367]	DEBUG     [2020-02-13 10:34:36,293]	Parsed raw-data (without ignored rows and columns):
+PyBrainLearning.py       [Line:378]	DEBUG     [2020-02-13 10:34:36,294]	    [0.0, 0.0, ..., 0.009708737864077669, 0]
+PyBrainLearning.py       [Line:379]	DEBUG     [2020-02-13 10:34:36,295]	    [0.0, 1.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:380]	DEBUG     [2020-02-13 10:34:36,296]	    [ ... skipped ... ]
+PyBrainLearning.py       [Line:381]	DEBUG     [2020-02-13 10:34:36,297]	    [1.0, 0.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:382]	DEBUG     [2020-02-13 10:34:36,298]	    [0.0, 1.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:384]	INFO      [2020-02-13 10:34:36,299]	File with raw data successfully parsed.
+PyBrainLearning.py       [Line:71]	INFO      [2020-02-13 10:34:36,300]	Defuzzyficating raw data ...
+FuzzyClassificator.py    [Line:459]	INFO      [2020-02-13 10:34:36,301]	----------------------------------------
+FuzzyClassificator.py    [Line:460]	INFO      [2020-02-13 10:34:36,304]	Step 3. Loading trained network from network configuration file.
+PyBrainLearning.py       [Line:569]	DEBUG     [2020-02-13 10:34:36,305]	Loading network from PyBrain xml-formatted file...
+FuzzyClassificator.py    [Line:628]	ERROR     [2020-02-13 10:34:36,313]	Traceback (most recent call last):
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/FuzzyClassificator.py", line 622, in Main
+    exitCode = int(not(ClassifyingMode(**classifyParameters)))
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/FuzzyClassificator.py", line 521, in ClassifyingMode
+    if CMStep3LoadingTrainedNetworkFromNetworkConfigurationFile(fNetwork):
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/FuzzyClassificator.py", line 462, in CMStep3LoadingTrainedNetworkFromNetworkConfigurationFile
+    fNetwork.LoadNetwork()  # reload old network for continuing training
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/PyBrainLearning.py", line 574, in LoadNetwork
+    net = NetworkReader.readFrom(self.networkFile)
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/pybrain/tools/customxml/networkreader.py", line 176, in readFrom
+    return r.readNetwork(netroot)
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/pybrain/tools/customxml/networkreader.py", line 187, in readNetwork
+    m, inmodule, outmodule = self.readModule(mnode)
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/pybrain/tools/customxml/networkreader.py", line 216, in readModule
+    self.modules[m.name] = m
+AttributeError: 'NoneType' object has no attribute 'name'
+
+FuzzyClassificator.py    [Line:629]	INFO      [2020-02-13 10:34:36,314]	FuzzyClassificator work finished with exitCode = 1
+FuzzyClassificator.py    [Line:630]	INFO      [2020-02-13 10:34:36,315]	--------------------------------------------------------------------------------
+FuzzyClassificator.py    [Line:632]	INFO      [2020-02-13 10:34:36,317]	FuzzyClassificator work finished with exitCode = 0
+FuzzyClassificator.py    [Line:633]	INFO      [2020-02-13 10:34:36,317]	--------------------------------------------------------------------------------
+FuzzyClassificator.py    [Line:340]	INFO      [2020-02-13 10:36:15,321]	--------------------------------------------------------------------------------
+FuzzyClassificator.py    [Line:341]	INFO      [2020-02-13 10:36:15,322]	FuzzyClassificator version: 1.3.81
+FuzzyClassificator.py    [Line:342]	INFO      [2020-02-13 10:36:15,323]	Learning mode activated.
+FuzzyClassificator.py    [Line:343]	INFO      [2020-02-13 10:36:15,324]	Log file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/fc.log
+FuzzyClassificator.py    [Line:107]	INFO      [2020-02-13 10:36:15,325]	----------------------------------------
+FuzzyClassificator.py    [Line:108]	INFO      [2020-02-13 10:36:15,326]	Step 1. Creating PyBrain network instance with pre-defined config parameters.
+PyBrainLearning.py       [Line:295]	DEBUG     [2020-02-13 10:36:15,340]	Row added to ignore list: 1 (index: 0)
+FuzzyClassificator.py    [Line:210]	DEBUG     [2020-02-13 10:36:15,341]	Instance of fuzzy network initialized with parameters:
+FuzzyClassificator.py    [Line:211]	DEBUG     [2020-02-13 10:36:15,342]	    {'config': '11,3,2,1', 'epochs': 100, 'rate': 0.5, 'momentum': 0.5, 'epsilon': 0.05, 'stop': 1}
+FuzzyClassificator.py    [Line:212]	DEBUG     [2020-02-13 10:36:15,344]	File with ethalons data: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/ethalons.dat
+FuzzyClassificator.py    [Line:213]	DEBUG     [2020-02-13 10:36:15,344]	File for saving Neuronet: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+FuzzyClassificator.py    [Line:214]	DEBUG     [2020-02-13 10:36:15,346]	Classification Report file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/report.txt
+FuzzyClassificator.py    [Line:215]	DEBUG     [2020-02-13 10:36:15,347]	For measurements used fuzzy scale:
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:36:15,348]	FuzzyScale = {Min, Low, Med, High, Max}
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:36:15,349]	    Min = <Hyperbolic(x, {"a": 8, "b": 20, "c": 0}), [0.0, 0.23]>
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:36:15,350]	    Low = <Bell(x, {"a": 0.17, "b": 0.23, "c": 0.34}), [0.17, 0.4]>
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:36:15,351]	    Med = <Bell(x, {"a": 0.34, "b": 0.4, "c": 0.6}), [0.34, 0.66]>
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:36:15,351]	    High = <Bell(x, {"a": 0.6, "b": 0.66, "c": 0.77}), [0.6, 0.83]>
+FuzzyClassificator.py    [Line:218]	DEBUG     [2020-02-13 10:36:15,353]	    Max = <Parabolic(x, {"a": 0.77, "b": 0.95}), [0.77, 1.0]>
+FuzzyClassificator.py    [Line:240]	INFO      [2020-02-13 10:36:15,354]	----------------------------------------
+FuzzyClassificator.py    [Line:241]	INFO      [2020-02-13 10:36:15,355]	Step 2. Parsing raw data file with ethalons.
+PyBrainLearning.py       [Line:336]	INFO      [2020-02-13 10:36:15,355]	Parsing file with raw data...
+PyBrainLearning.py       [Line:343]	DEBUG     [2020-02-13 10:36:15,356]	Opened file: ethalons.dat
+PyBrainLearning.py       [Line:344]	DEBUG     [2020-02-13 10:36:15,357]	Separator symbol used: ,
+PyBrainLearning.py       [Line:345]	DEBUG     [2020-02-13 10:36:15,359]	Ignored row indexes (1st row is 0): [0]
+PyBrainLearning.py       [Line:346]	DEBUG     [2020-02-13 10:36:15,360]	Ignored column indexes (1st column is 0): []
+PyBrainLearning.py       [Line:367]	DEBUG     [2020-02-13 10:36:15,362]	Parsed raw-data (without ignored rows and columns):
+PyBrainLearning.py       [Line:378]	DEBUG     [2020-02-13 10:36:15,363]	    [0.0, 1.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:379]	DEBUG     [2020-02-13 10:36:15,363]	    [0.0, 0.0, ..., 0.009708737864077669, 0]
+PyBrainLearning.py       [Line:380]	DEBUG     [2020-02-13 10:36:15,365]	    [ ... skipped ... ]
+PyBrainLearning.py       [Line:381]	DEBUG     [2020-02-13 10:36:15,365]	    [0.0, 0.0, ..., 0.009708737864077669, 0]
+PyBrainLearning.py       [Line:382]	DEBUG     [2020-02-13 10:36:15,367]	    [1.0, 0.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:384]	INFO      [2020-02-13 10:36:15,367]	File with raw data successfully parsed.
+PyBrainLearning.py       [Line:71]	INFO      [2020-02-13 10:36:15,369]	Defuzzyficating raw data ...
+FuzzyClassificator.py    [Line:259]	INFO      [2020-02-13 10:36:15,370]	----------------------------------------
+FuzzyClassificator.py    [Line:260]	INFO      [2020-02-13 10:36:15,371]	Step 3. Preparing PyBrain dataset.
+PyBrainLearning.py       [Line:406]	INFO      [2020-02-13 10:36:15,372]	Converting parsed and defuzzificated raw-data into PyBrain dataset format...
+PyBrainLearning.py       [Line:426]	DEBUG     [2020-02-13 10:36:15,374]	PyBrain dataset vectors, inputs and outputs (targets):
+PyBrainLearning.py       [Line:430]	DEBUG     [2020-02-13 10:36:15,387]	- input vectors, dim(11, 72):
+PyBrainLearning.py       [Line:437]	DEBUG     [2020-02-13 10:36:15,388]	    [[0.         1.         0.         0.         0.         0.
+PyBrainLearning.py       [Line:438]	DEBUG     [2020-02-13 10:36:15,388]	      0.         0.         1.         0.         0.        ]
+PyBrainLearning.py       [Line:439]	DEBUG     [2020-02-13 10:36:15,390]	     [ ... skipped ... ]
+PyBrainLearning.py       [Line:440]	DEBUG     [2020-02-13 10:36:15,390]	     [1.         0.         0.         0.         0.         0.
+PyBrainLearning.py       [Line:441]	DEBUG     [2020-02-13 10:36:15,391]	      0.         0.         1.         0.         0.        ]]
+PyBrainLearning.py       [Line:445]	DEBUG     [2020-02-13 10:36:15,393]	- output vectors, dim(1, 72):
+PyBrainLearning.py       [Line:452]	DEBUG     [2020-02-13 10:36:15,395]	    [[0.]
+PyBrainLearning.py       [Line:453]	DEBUG     [2020-02-13 10:36:15,396]	     [0.]
+PyBrainLearning.py       [Line:454]	DEBUG     [2020-02-13 10:36:15,397]	     [ ... skipped ... ]
+PyBrainLearning.py       [Line:455]	DEBUG     [2020-02-13 10:36:15,398]	     [0.]
+PyBrainLearning.py       [Line:456]	DEBUG     [2020-02-13 10:36:15,399]	     [0.]]
+PyBrainLearning.py       [Line:458]	INFO      [2020-02-13 10:36:15,400]	PyBrain dataset successfully prepared.
+FuzzyClassificator.py    [Line:278]	INFO      [2020-02-13 10:36:15,401]	----------------------------------------
+FuzzyClassificator.py    [Line:279]	INFO      [2020-02-13 10:36:15,402]	Step 4. Initialize empty PyBrain network for learning or reading network configuration from file.
+PyBrainLearning.py       [Line:472]	INFO      [2020-02-13 10:36:15,403]	Creating PyBrain network...
+PyBrainLearning.py       [Line:482]	INFO      [2020-02-13 10:36:15,404]	Neuronet configuration: Config = <inputs, {layers}, outputs>
+PyBrainLearning.py       [Line:483]	INFO      [2020-02-13 10:36:15,405]	    - inputs is dimension of all input vectors: 11
+PyBrainLearning.py       [Line:484]	INFO      [2020-02-13 10:36:15,406]	    - outputs is dimension of all output vectors: 1
+PyBrainLearning.py       [Line:485]	INFO      [2020-02-13 10:36:15,407]	    - count of hidden layers for Neuronet: 2
+PyBrainLearning.py       [Line:489]	INFO      [2020-02-13 10:36:15,408]	      ... dimension of 0 hidden layer: 3
+PyBrainLearning.py       [Line:489]	INFO      [2020-02-13 10:36:15,409]	      ... dimension of 1 hidden layer: 2
+PyBrainLearning.py       [Line:506]	INFO      [2020-02-13 10:36:15,412]	PyBrain network successfully created.
+FuzzyClassificator.py    [Line:301]	INFO      [2020-02-13 10:36:15,413]	----------------------------------------
+FuzzyClassificator.py    [Line:302]	INFO      [2020-02-13 10:36:15,414]	Step 5. Creating PyBrain trainer.
+PyBrainLearning.py       [Line:520]	INFO      [2020-02-13 10:36:15,415]	Initializing PyBrain backpropagating trainer...
+PyBrainLearning.py       [Line:528]	INFO      [2020-02-13 10:36:15,416]	Trainer using parameters:
+PyBrainLearning.py       [Line:529]	INFO      [2020-02-13 10:36:15,416]	    - PyBrain network previously created,
+PyBrainLearning.py       [Line:530]	INFO      [2020-02-13 10:36:15,418]	    - PyBrain dataset previously created,
+PyBrainLearning.py       [Line:531]	INFO      [2020-02-13 10:36:15,418]	    - epoch parameter: 100
+PyBrainLearning.py       [Line:532]	INFO      [2020-02-13 10:36:15,419]	    - network learning rate parameter: 0.5
+PyBrainLearning.py       [Line:533]	INFO      [2020-02-13 10:36:15,420]	    - momentum parameter: 0.5
+PyBrainLearning.py       [Line:534]	INFO      [2020-02-13 10:36:15,421]	    - epsilon parameter: 0.05
+PyBrainLearning.py       [Line:535]	INFO      [2020-02-13 10:36:15,422]	    - stop parameter: 1.0%
+PyBrainLearning.py       [Line:545]	INFO      [2020-02-13 10:36:15,424]	PyBrain network successfully created.
+FuzzyClassificator.py    [Line:319]	INFO      [2020-02-13 10:36:15,424]	----------------------------------------
+FuzzyClassificator.py    [Line:320]	INFO      [2020-02-13 10:36:15,425]	Step 6. Starts learning and saving network configuration to file.
+PyBrainLearning.py       [Line:755]	INFO      [2020-02-13 10:36:15,426]	Max epochs: 100
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:15,428]	Progress: 1.00% (epoch: 1 in 100)
+PyBrainLearning.py       [Line:559]	DEBUG     [2020-02-13 10:36:15,497]	Autosaving - enabled. Trying to save network as PyBrain xml-formatted file...
+PyBrainLearning.py       [Line:563]	INFO      [2020-02-13 10:36:15,500]	Current network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:15,501]	Progress: 2.00% (epoch: 2 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:15,582]	Progress: 3.00% (epoch: 3 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:15,660]	Progress: 4.00% (epoch: 4 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:15,732]	Progress: 5.00% (epoch: 5 in 100, total time: 0:00:00, time remaining: 0:00:06)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:36:15,759]	    - false classificated of vectors: 1.4% (1 of 72)
+PyBrainLearning.py       [Line:804]	INFO      [2020-02-13 10:36:15,760]	Best network found:
+PyBrainLearning.py       [Line:805]	INFO      [2020-02-13 10:36:15,761]	    Config: (11, 3, 2, 1)
+PyBrainLearning.py       [Line:806]	INFO      [2020-02-13 10:36:15,762]	    Epoch: 5
+PyBrainLearning.py       [Line:807]	INFO      [2020-02-13 10:36:15,763]	    Number of error vectors (Euclidian norm > epsilon): 1.4% (1 of 72)
+PyBrainLearning.py       [Line:820]	INFO      [2020-02-13 10:36:15,779]	Best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.xml
+PyBrainLearning.py       [Line:821]	INFO      [2020-02-13 10:36:15,780]	Common information about best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.txt
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:15,852]	Progress: 6.00% (epoch: 6 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:15,923]	Progress: 7.00% (epoch: 7 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:15,993]	Progress: 8.00% (epoch: 8 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,063]	Progress: 9.00% (epoch: 9 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,137]	Progress: 10.00% (epoch: 10 in 100, total time: 0:00:01, time remaining: 0:00:06)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:36:16,164]	    - false classificated of vectors: 100.0% (72 of 72)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,236]	Progress: 11.00% (epoch: 11 in 100)
+PyBrainLearning.py       [Line:559]	DEBUG     [2020-02-13 10:36:16,306]	Autosaving - enabled. Trying to save network as PyBrain xml-formatted file...
+PyBrainLearning.py       [Line:563]	INFO      [2020-02-13 10:36:16,310]	Current network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,310]	Progress: 12.00% (epoch: 12 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,381]	Progress: 13.00% (epoch: 13 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,453]	Progress: 14.00% (epoch: 14 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,524]	Progress: 15.00% (epoch: 15 in 100, total time: 0:00:01, time remaining: 0:00:06)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:36:16,551]	    - false classificated of vectors: 100.0% (72 of 72)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,622]	Progress: 16.00% (epoch: 16 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,691]	Progress: 17.00% (epoch: 17 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,763]	Progress: 18.00% (epoch: 18 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,834]	Progress: 19.00% (epoch: 19 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:16,903]	Progress: 20.00% (epoch: 20 in 100, total time: 0:00:01, time remaining: 0:00:06)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:36:16,933]	    - false classificated of vectors: 1.4% (1 of 72)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,002]	Progress: 21.00% (epoch: 21 in 100)
+PyBrainLearning.py       [Line:559]	DEBUG     [2020-02-13 10:36:17,072]	Autosaving - enabled. Trying to save network as PyBrain xml-formatted file...
+PyBrainLearning.py       [Line:563]	INFO      [2020-02-13 10:36:17,075]	Current network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,076]	Progress: 22.00% (epoch: 22 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,150]	Progress: 23.00% (epoch: 23 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,221]	Progress: 24.00% (epoch: 24 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,289]	Progress: 25.00% (epoch: 25 in 100, total time: 0:00:02, time remaining: 0:00:06)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:36:17,319]	    - false classificated of vectors: 11.1% (8 of 72)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,388]	Progress: 26.00% (epoch: 26 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,459]	Progress: 27.00% (epoch: 27 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,530]	Progress: 28.00% (epoch: 28 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,599]	Progress: 29.00% (epoch: 29 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,670]	Progress: 30.00% (epoch: 30 in 100, total time: 0:00:02, time remaining: 0:00:05)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:36:17,699]	    - false classificated of vectors: 100.0% (72 of 72)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,769]	Progress: 31.00% (epoch: 31 in 100)
+PyBrainLearning.py       [Line:559]	DEBUG     [2020-02-13 10:36:17,839]	Autosaving - enabled. Trying to save network as PyBrain xml-formatted file...
+PyBrainLearning.py       [Line:563]	INFO      [2020-02-13 10:36:17,843]	Current network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,843]	Progress: 32.00% (epoch: 32 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,916]	Progress: 33.00% (epoch: 33 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:17,985]	Progress: 34.00% (epoch: 34 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,056]	Progress: 35.00% (epoch: 35 in 100, total time: 0:00:03, time remaining: 0:00:05)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:36:18,083]	    - false classificated of vectors: 11.1% (8 of 72)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,155]	Progress: 36.00% (epoch: 36 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,227]	Progress: 37.00% (epoch: 37 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,296]	Progress: 38.00% (epoch: 38 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,367]	Progress: 39.00% (epoch: 39 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,438]	Progress: 40.00% (epoch: 40 in 100, total time: 0:00:03, time remaining: 0:00:05)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:36:18,465]	    - false classificated of vectors: 11.1% (8 of 72)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,540]	Progress: 41.00% (epoch: 41 in 100)
+PyBrainLearning.py       [Line:559]	DEBUG     [2020-02-13 10:36:18,616]	Autosaving - enabled. Trying to save network as PyBrain xml-formatted file...
+PyBrainLearning.py       [Line:563]	INFO      [2020-02-13 10:36:18,619]	Current network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,620]	Progress: 42.00% (epoch: 42 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,698]	Progress: 43.00% (epoch: 43 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,769]	Progress: 44.00% (epoch: 44 in 100)
+PyBrainLearning.py       [Line:780]	INFO      [2020-02-13 10:36:18,841]	Progress: 45.00% (epoch: 45 in 100, total time: 0:00:03, time remaining: 0:00:04)
+PyBrainLearning.py       [Line:794]	INFO      [2020-02-13 10:36:18,868]	    - false classificated of vectors: 0.0% (0 of 72)
+PyBrainLearning.py       [Line:804]	INFO      [2020-02-13 10:36:18,869]	Best network found:
+PyBrainLearning.py       [Line:805]	INFO      [2020-02-13 10:36:18,870]	    Config: (11, 3, 2, 1)
+PyBrainLearning.py       [Line:806]	INFO      [2020-02-13 10:36:18,871]	    Epoch: 45
+PyBrainLearning.py       [Line:807]	INFO      [2020-02-13 10:36:18,872]	    Number of error vectors (Euclidian norm > epsilon): 0.0% (0 of 72)
+PyBrainLearning.py       [Line:820]	INFO      [2020-02-13 10:36:18,888]	Best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.xml
+PyBrainLearning.py       [Line:821]	INFO      [2020-02-13 10:36:18,889]	Common information about best network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/best_nn.txt
+PyBrainLearning.py       [Line:825]	INFO      [2020-02-13 10:36:18,890]	Current percent of false classificated vectors is 0.0% less than stop value 1.0%.
+PyBrainLearning.py       [Line:559]	DEBUG     [2020-02-13 10:36:18,890]	Autosaving - enabled. Trying to save network as PyBrain xml-formatted file...
+PyBrainLearning.py       [Line:563]	INFO      [2020-02-13 10:36:18,894]	Current network saved to file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+PyBrainLearning.py       [Line:842]	INFO      [2020-02-13 10:36:18,895]	Current network replace with the best network.
+PyBrainLearning.py       [Line:845]	INFO      [2020-02-13 10:36:18,896]	Duration of learning: 0:00:03
+FuzzyClassificator.py    [Line:356]	INFO      [2020-02-13 10:36:18,897]	----------------------------------------
+FuzzyClassificator.py    [Line:357]	INFO      [2020-02-13 10:36:18,898]	Successful finish all Learning steps.
+PyBrainLearning.py       [Line:698]	DEBUG     [2020-02-13 10:36:18,899]	Classification results:
+PyBrainLearning.py       [Line:706]	DEBUG     [2020-02-13 10:36:18,900]	    Header:    [Anemia Osteopenia ... TTG_IGA Esami del sangue]	[Class]
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,902]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,903]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,904]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,906]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,908]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,911]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,912]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,914]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,916]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,918]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,919]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,921]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,923]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,924]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,926]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,928]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,930]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,931]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,933]	        Input: [0.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,935]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,936]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,938]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,940]	        Input: [0.0, 0.0, ..., 0.0, 1.0]	Output: ['Max']	Expected: ['1']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,942]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,943]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,945]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,947]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,949]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,950]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,952]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,954]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,955]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,957]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,959]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,961]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,962]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,964]	        Input: [0.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,966]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,967]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,969]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,971]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,973]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,974]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,976]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,977]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,979]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,981]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,983]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,985]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,986]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,988]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,990]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,991]	        Input: [1.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,993]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,995]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,996]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,998]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:18,999]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,001]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,002]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,004]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,005]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,006]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,008]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,009]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,012]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,014]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,015]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,017]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,018]	        Input: [0.0, 1.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,021]	        Input: [0.0, 0.0, ..., 0.0, 0.009708737864077669]	Output: ['Min']	Expected: ['0']
+PyBrainLearning.py       [Line:656]	DEBUG     [2020-02-13 10:36:19,022]	        Input: [1.0, 0.0, ..., 0.0, 0.0]	Output: ['Min']	Expected: ['0']
+FuzzyClassificator.py    [Line:365]	INFO      [2020-02-13 10:36:19,023]	Learning mode deactivated.
+FuzzyClassificator.py    [Line:632]	INFO      [2020-02-13 10:36:19,024]	FuzzyClassificator work finished with exitCode = 0
+FuzzyClassificator.py    [Line:633]	INFO      [2020-02-13 10:36:19,026]	--------------------------------------------------------------------------------
+FuzzyClassificator.py    [Line:512]	INFO      [2020-02-13 10:36:21,541]	--------------------------------------------------------------------------------
+FuzzyClassificator.py    [Line:513]	INFO      [2020-02-13 10:36:21,542]	FuzzyClassificator version: 1.3.81
+FuzzyClassificator.py    [Line:514]	INFO      [2020-02-13 10:36:21,543]	Classificator mode activated.
+FuzzyClassificator.py    [Line:515]	INFO      [2020-02-13 10:36:21,544]	Log file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/fc.log
+FuzzyClassificator.py    [Line:377]	INFO      [2020-02-13 10:36:21,545]	----------------------------------------
+FuzzyClassificator.py    [Line:378]	INFO      [2020-02-13 10:36:21,546]	Step 1. Creating PyBrain network instance.
+PyBrainLearning.py       [Line:295]	DEBUG     [2020-02-13 10:36:21,559]	Row added to ignore list: 1 (index: 0)
+FuzzyClassificator.py    [Line:410]	DEBUG     [2020-02-13 10:36:21,560]	Instance of fuzzy network initialized with parameters:
+FuzzyClassificator.py    [Line:411]	DEBUG     [2020-02-13 10:36:21,561]	{'config': '11,3,2,1', 'epochs': 100, 'rate': 0.5, 'momentum': 0.5, 'epsilon': 0.05, 'stop': 1}
+FuzzyClassificator.py    [Line:412]	DEBUG     [2020-02-13 10:36:21,563]	File with candidates data: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/candidates.dat
+FuzzyClassificator.py    [Line:413]	DEBUG     [2020-02-13 10:36:21,563]	File for saving Neuronet: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/network.xml
+FuzzyClassificator.py    [Line:414]	DEBUG     [2020-02-13 10:36:21,565]	Classification Report file: /Users/metabacchi/Documents/GitHub/Celiachion/Codice/TestClassificatoreFuzzy/report.txt
+FuzzyClassificator.py    [Line:415]	DEBUG     [2020-02-13 10:36:21,565]	For measurements used fuzzy scale:
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:36:21,566]	FuzzyScale = {Min, Low, Med, High, Max}
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:36:21,568]	    Min = <Hyperbolic(x, {"a": 8, "b": 20, "c": 0}), [0.0, 0.23]>
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:36:21,569]	    Low = <Bell(x, {"a": 0.17, "b": 0.23, "c": 0.34}), [0.17, 0.4]>
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:36:21,569]	    Med = <Bell(x, {"a": 0.34, "b": 0.4, "c": 0.6}), [0.34, 0.66]>
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:36:21,570]	    High = <Bell(x, {"a": 0.6, "b": 0.66, "c": 0.77}), [0.6, 0.83]>
+FuzzyClassificator.py    [Line:418]	DEBUG     [2020-02-13 10:36:21,571]	    Max = <Parabolic(x, {"a": 0.77, "b": 0.95}), [0.77, 1.0]>
+FuzzyClassificator.py    [Line:440]	INFO      [2020-02-13 10:36:21,572]	----------------------------------------
+FuzzyClassificator.py    [Line:441]	INFO      [2020-02-13 10:36:21,573]	Step 2. Parsing raw data file with candidates.
+PyBrainLearning.py       [Line:336]	INFO      [2020-02-13 10:36:21,574]	Parsing file with raw data...
+PyBrainLearning.py       [Line:343]	DEBUG     [2020-02-13 10:36:21,575]	Opened file: candidates.dat
+PyBrainLearning.py       [Line:344]	DEBUG     [2020-02-13 10:36:21,577]	Separator symbol used: ,
+PyBrainLearning.py       [Line:345]	DEBUG     [2020-02-13 10:36:21,577]	Ignored row indexes (1st row is 0): [0]
+PyBrainLearning.py       [Line:346]	DEBUG     [2020-02-13 10:36:21,579]	Ignored column indexes (1st column is 0): []
+PyBrainLearning.py       [Line:367]	DEBUG     [2020-02-13 10:36:21,580]	Parsed raw-data (without ignored rows and columns):
+PyBrainLearning.py       [Line:378]	DEBUG     [2020-02-13 10:36:21,581]	    [0.0, 0.0, ..., 0.009708737864077669, 0]
+PyBrainLearning.py       [Line:379]	DEBUG     [2020-02-13 10:36:21,582]	    [0.0, 1.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:380]	DEBUG     [2020-02-13 10:36:21,583]	    [ ... skipped ... ]
+PyBrainLearning.py       [Line:381]	DEBUG     [2020-02-13 10:36:21,584]	    [1.0, 0.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:382]	DEBUG     [2020-02-13 10:36:21,584]	    [0.0, 1.0, ..., 0.0, 0]
+PyBrainLearning.py       [Line:384]	INFO      [2020-02-13 10:36:21,585]	File with raw data successfully parsed.
+PyBrainLearning.py       [Line:71]	INFO      [2020-02-13 10:36:21,587]	Defuzzyficating raw data ...
+FuzzyClassificator.py    [Line:459]	INFO      [2020-02-13 10:36:21,588]	----------------------------------------
+FuzzyClassificator.py    [Line:460]	INFO      [2020-02-13 10:36:21,589]	Step 3. Loading trained network from network configuration file.
+PyBrainLearning.py       [Line:569]	DEBUG     [2020-02-13 10:36:21,590]	Loading network from PyBrain xml-formatted file...
+FuzzyClassificator.py    [Line:628]	ERROR     [2020-02-13 10:36:21,594]	Traceback (most recent call last):
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/FuzzyClassificator.py", line 622, in Main
+    exitCode = int(not(ClassifyingMode(**classifyParameters)))
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/FuzzyClassificator.py", line 521, in ClassifyingMode
+    if CMStep3LoadingTrainedNetworkFromNetworkConfigurationFile(fNetwork):
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/FuzzyClassificator.py", line 462, in CMStep3LoadingTrainedNetworkFromNetworkConfigurationFile
+    fNetwork.LoadNetwork()  # reload old network for continuing training
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/PyBrainLearning.py", line 574, in LoadNetwork
+    net = NetworkReader.readFrom(self.networkFile)
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/pybrain/tools/customxml/networkreader.py", line 176, in readFrom
+    return r.readNetwork(netroot)
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/pybrain/tools/customxml/networkreader.py", line 187, in readNetwork
+    m, inmodule, outmodule = self.readModule(mnode)
+  File "/Users/metabacchi/anaconda3/lib/python3.7/site-packages/pybrain/tools/customxml/networkreader.py", line 216, in readModule
+    self.modules[m.name] = m
+AttributeError: 'NoneType' object has no attribute 'name'
+
+FuzzyClassificator.py    [Line:629]	INFO      [2020-02-13 10:36:21,595]	FuzzyClassificator work finished with exitCode = 1
+FuzzyClassificator.py    [Line:630]	INFO      [2020-02-13 10:36:21,596]	--------------------------------------------------------------------------------
+FuzzyClassificator.py    [Line:632]	INFO      [2020-02-13 10:36:21,597]	FuzzyClassificator work finished with exitCode = 0
+FuzzyClassificator.py    [Line:633]	INFO      [2020-02-13 10:36:21,598]	--------------------------------------------------------------------------------
