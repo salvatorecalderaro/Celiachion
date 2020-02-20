@@ -119,10 +119,10 @@ def create_dataset(num):
 
 
 if __name__ == '__main__':
-    print("How many rows do you want? Please enter a multiple of 10")
+    print("How many rows do you want? Please enter a multiple of 100")
     temp = None
     temp = int(input())
     while type(temp) is not int:
-        print("Incorret input. Please enter a multiple of 10")
+        print("Incorret input. Please enter a multiple of 100")
         temp = int(input())
     create_dataset(temp)
