@@ -61,7 +61,7 @@ def split_dataset():
 
 
 def train_classifier():
-    fc.EthalonDataFile = "ethalons.dat"
+    fc.ethalonsDataFile = "ethalons.dat"
     fc.candidatesDataFile = "candidates.dat"
     fc.neuroNetworkFile = "network.xml"
     fc.sepSymbol = ","
