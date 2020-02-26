@@ -1,23 +1,23 @@
-import numpy
+import numpy as np
 import scipy.stats
 import constant
 
 
 class patient:
     def __init__(self):
-        self.anemia = numpy.NaN
-        self.osteopenia = numpy.NaN
-        self.chronic_diarrhea = numpy.NaN
-        self.growth_failure = numpy.NaN
-        self.genetic_disorders = numpy.NaN
-        self.celiac_mother = numpy.NaN
-        self.POCT = numpy.NaN
-        self.total_IGA = numpy.NaN
-        self.TTG_igg = numpy.NaN
-        self.TTG_iga = numpy.NaN
-        self.blood_tests = numpy.NaN
-        self.biopsy = numpy.NaN
-        self.Class = numpy.NaN
+        self.anemia = np.NaN
+        self.osteopenia = np.NaN
+        self.chronic_diarrhea = np.NaN
+        self.growth_failure = np.NaN
+        self.genetic_disorders = np.NaN
+        self.celiac_mother = np.NaN
+        self.POCT = np.NaN
+        self.total_IGA = np.NaN
+        self.TTG_igg = np.NaN
+        self.TTG_iga = np.NaN
+        self.blood_tests = np.NaN
+        #self.biopsy = np.NaN
+        self.Class = np.NaN
 
     def is_POCT_negative(self):
         if self.POCT is constant.NEGATIVE_POCT:
@@ -33,47 +33,47 @@ class patient:
             return False
 
     def set_total_IGA_above_threshold_for_negative_patient(self):
-        mu, sigma = 7.00, 2.00
-        self.total_IGA = numpy.random.normal(mu, sigma)
+        mu, sigma = 0.7, 2.00
+        self.total_IGA = np.random.normal(mu, sigma)
         if self.total_IGA < constant.IGA_THRESHOLD:
             self.total_IGA = constant.IGA_THRESHOLD
         self.total_IGA = round(self.total_IGA, 2)
 
     def set_total_IGA_above_threshold_for_positive_patient(self):
-        mu, sigma = 8.00, 2.00
-        self.total_IGA = numpy.random.normal(mu, sigma)
+        mu, sigma = 0.8, 2.00
+        self.total_IGA = np.random.normal(mu, sigma)
         if self.total_IGA < constant.IGA_THRESHOLD:
             self.total_IGA = constant.IGA_THRESHOLD
         self.total_IGA = round(self.total_IGA, 2)
 
     def set_total_IGA_below_threshold_for_negative_patient(self):
-        self.total_IGA = numpy.random.uniform(0, 0.25)
+        self.total_IGA = np.random.uniform(0, 0.25)
         self.total_IGA = round(self.total_IGA, 2)
 
     def set_total_IGA_below_threshold_for_positive_patient(self):
         mu, sigma = 0.125, 1.00
-        self.total_IGA = numpy.random.normal(mu, sigma)
+        self.total_IGA = np.random.normal(mu, sigma)
         if self.total_IGA < 0:
             self.total_IGA = 0.00
         self.total_IGA = round(self.total_IGA, 2)
 
     def set_TTG_igg_for_negative_patient(self):
         mu, sigma = 2.00, 2.00
-        self.TTG_igg = numpy.random.normal(mu, sigma)
+        self.TTG_igg = np.random.normal(mu, sigma)
         if self.TTG_igg < 0:
             self.TTG_igg = 0.00
         self.TTG_igg = round(self.TTG_igg, 2)
 
     def set_TTG_igg_for_positive_patient(self):
         mu, sigma = 14.00, 2.00
-        self.TTG_igg = numpy.random.normal(mu, sigma)
+        self.TTG_igg = np.random.normal(mu, sigma)
         if self.TTG_igg < 0:
             self.TTG_igg = 0.00
         self.TTG_igg = round(self.TTG_igg, 2)
 
     def set_TTG_iga_for_negative_patient(self):
         mu, sigma = 4.50, 2.00
-        self.TTG_iga = numpy.random.normal(mu, sigma)
+        self.TTG_iga = np.random.normal(mu, sigma)
         if self.TTG_iga < 0:
             self.TTG_iga = 0.00
         self.TTG_iga = round(self.TTG_iga, 2)
@@ -113,6 +113,6 @@ class patient:
         values.append(self.TTG_igg)
         values.append(self.TTG_iga)
         values.append(self.blood_tests)
-        values.append(self.biopsy)
+        #values.append(self.biopsy)
         values.append(self.Class)
         return values

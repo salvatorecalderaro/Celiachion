@@ -10,7 +10,7 @@ import constant
 
 resource_path = "Dataset/"
 dataset_file = "dataset_virtuale.csv"
-data = pd.read_csv(resource_path + dataset_file)
+data = pd.read_csv(resource_path + dataset_file, index_col=False)
 num_columns = data.shape[1] - 1
 
 
