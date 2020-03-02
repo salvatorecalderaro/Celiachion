@@ -36,14 +36,14 @@ def to_fuzzy():
     for column in data.columns[0:-1]:
         x = np.unique(data[column])
         if 1 < len(x) < 4 and x.__contains__(1) and x.__contains__(0):
-            t = TriangularSet(constant.BINARY_MIN, constant.BINARY_MEAN, constant.BINARY_MAX)
+            t = TriangularSet(0, 1, 1)
         else:
             if dataset_file == "dataset_virtuale.csv":
                 if column == "IGA totali":
                     t = TriangularSet(constant.MIN_IGA, constant.MEAN_IGA, constant.MAX_IGA)
-                elif column == "TTG IGG":
+                elif column == "TTG_IGG":
                     t = TriangularSet(constant.TTG_IGG_MIN, constant.TTG_IGG_MEAN, constant.TTG_IGG_MAX)
-                elif column == "TTG IGG":
+                elif column == "TTG_IGA":
                     t = TriangularSet(constant.TTG_IGA_MIN, constant.TTG_IGA_MEAN, constant.TTG_IGA_MAX)
             else:
                 max_value = ff.max(data[column])
