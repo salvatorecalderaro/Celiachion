@@ -173,7 +173,7 @@ def evaluate_classifier():
     print("Number of med values: " + str(med_counter))
     print("Negative Med correspondence: " + str(med_negative))
     print("Positive Med correspondence: " + str(med_positive))
-    print("Med value chosen: " + str(med_value))
+    print("Med value chosen: " + str(med_value), end="\n\n")
     print_report(confusion_matrix)
 
 
@@ -183,20 +183,21 @@ def print_report(confusion_matrix):
     fp = confusion_matrix[0][1]
     fn = confusion_matrix[1][0]
     tp = confusion_matrix[1][1]
-    print("\nConfusion Matrix")
-    print("TN\t\tFP\nFN\t\tTP")
-    print(confusion_matrix, end="\n")
-    print(str(int(tn)) + "\t\t" + str(int(fp)) + "\n" + str(int(fn)) + "\t\t" + str(int(tp)), end="\n")
+    print("Confusion matrix:")
+    print("TN: " + str(int(tn)))
+    print("FP: " + str(int(fp)))
+    print("FN: " + str(int(fn)))
+    print("TP: " + str(int(tp)), end="\n\n")
     # metrics
     accuracy = (tp + tn) / (tp + tn + fp + fn)
     print("Accuracy: {0} %".format(round(accuracy * 100, 2)))
-    if tp + fp == 0:
+    if tp + fp != 0:
         precision = tp / (tp + fp)
         print("Precision: {0} %".format(round(precision * 100, 2)))
-    if tn + fp == 0:
+    if tn + fp != 0:
         specificity = tn / (tn + fp)
         print("Specificity: {0} %".format(round(specificity * 100, 2)))
-    if tp + fn:
+    if tp + fn != 0:
         recall = tp / (tp + fn)
         print("Recall: {0} %\n".format(round(recall * 100, 2)))
 
@@ -264,7 +265,7 @@ while c != 0:
                     classifying_mode(num_params, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
                 elif sc == 3:
                     evaluate_classifier()
-                input("\nPress enter to continue")
+                input("\nPress enter to continue!")
             elif sc != 0:
                 print("Unknown command. Please, try again: ", end="")
     elif c != 0:

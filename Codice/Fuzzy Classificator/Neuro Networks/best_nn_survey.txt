@@ -1,7 +1,7 @@
 Best network common results:
     Config: (6, 6, 4, 1)
-    Epoch: 25
-    Number of error vectors (Euclidian norm > epsilon): 1.6% (113 of 7086)
+    Epoch: 95
+    Number of error vectors (Euclidian norm > epsilon): 1.6% (112 of 7086)
 
 All of learning parameters of FuzzyNeuroNetwork object:
 --------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ All of learning parameters of FuzzyNeuroNetwork object:
 
     _stop = 1.0
 
-    bestNetworkFalsePercent = 1.5946937623482924
+    bestNetworkFalsePercent = 1.5805814281682191
 
     bestNetworkFile = Neuro Networks/best_nn_survey.xml
 
@@ -35,7 +35,7 @@ All of learning parameters of FuzzyNeuroNetwork object:
 
     config = (6, 6, 4, 1)
 
-    currentFalsePercent = 1.5946937623482924
+    currentFalsePercent = 1.5805814281682191
 
     dataSet = input: dim(8190, 6)
 [[0. 0. 0. 0. 0. 0.]
@@ -68,7 +68,7 @@ target: dim(8190, 1)
 
     networkFile = Neuro Networks/network_survey.xml
 
-    progress = 25.0
+    progress = 95.0
 
     rawDataFile = Neuro Networks/ethalons_survey.csv
 

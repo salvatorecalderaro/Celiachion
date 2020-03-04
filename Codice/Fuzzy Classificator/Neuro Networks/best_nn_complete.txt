@@ -1,7 +1,7 @@
 Best network common results:
-    Config: (11, 6, 4, 1)
+    Config: (11, 3, 2, 1)
     Epoch: 5
-    Number of error vectors (Euclidian norm > epsilon): 0.1% (6 of 7086)
+    Number of error vectors (Euclidian norm > epsilon): 0.0% (2 of 7086)
 
 All of learning parameters of FuzzyNeuroNetwork object:
 --------------------------------------------------------------------------------
@@ -27,15 +27,15 @@ All of learning parameters of FuzzyNeuroNetwork object:
 
     _stop = 1.0
 
-    bestNetworkFalsePercent = 0.0846740050804403
+    bestNetworkFalsePercent = 0.028224668360146768
 
     bestNetworkFile = Neuro Networks/best_nn_complete.xml
 
     bestNetworkInfoFile = Neuro Networks/best_nn_complete.txt
 
-    config = (11, 6, 4, 1)
+    config = (11, 3, 2, 1)
 
-    currentFalsePercent = 0.0846740050804403
+    currentFalsePercent = 0.028224668360146768
 
     dataSet = input: dim(8190, 11)
 [[0.         0.         0.         ... 0.         0.29241582 0.00987752]
@@ -63,7 +63,7 @@ target: dim(8190, 1)
    Modules:
     [<BiasUnit 'bias'>, <LinearLayer 'in'>, <SigmoidLayer 'hidden0'>, <SigmoidLayer 'hidden1'>, <LinearLayer 'out'>]
    Connections:
-    [<FullConnection 'FullConnection-10': 'in' -> 'hidden0'>, <FullConnection 'FullConnection-5': 'hidden0' -> 'hidden1'>, <FullConnection 'FullConnection-6': 'bias' -> 'out'>, <FullConnection 'FullConnection-7': 'bias' -> 'hidden0'>, <FullConnection 'FullConnection-8': 'bias' -> 'hidden1'>, <FullConnection 'FullConnection-9': 'hidden1' -> 'out'>]
+    [<FullConnection 'FullConnection-10': 'bias' -> 'hidden1'>, <FullConnection 'FullConnection-5': 'hidden0' -> 'hidden1'>, <FullConnection 'FullConnection-6': 'in' -> 'hidden0'>, <FullConnection 'FullConnection-7': 'hidden1' -> 'out'>, <FullConnection 'FullConnection-8': 'bias' -> 'out'>, <FullConnection 'FullConnection-9': 'bias' -> 'hidden0'>]
 
 
     networkFile = Neuro Networks/network_complete.xml
