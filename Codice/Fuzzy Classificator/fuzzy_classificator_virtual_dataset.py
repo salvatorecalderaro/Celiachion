@@ -31,7 +31,7 @@ def split_dataset(till_survey_dataset_file, till_poct_dataset_file, till_blood_t
     till_survey_dataframe["Mancata Crescita"] = dataframe["Mancata Crescita"]
     till_survey_dataframe["Disturbi Genetici"] = dataframe["Disturbi Genetici"]
     till_survey_dataframe["Madre Celiaca"] = dataframe["Madre Celiaca"]
-    till_survey_dataframe["Class"] =dataframe["Class"]
+    till_survey_dataframe["Class"] = dataframe["Class"]
     till_survey_dataframe.to_csv("../Datasets/" + till_survey_dataset_file, index=False)
     # survey and poct dataset
     till_poct_dataframe = pd.DataFrame()
@@ -178,24 +178,27 @@ def evaluate_classifier():
 
 
 def print_report(confusion_matrix):
-    print("\nConfusion Matrix")
-    print("TN\t\tFP\nFN\t\tTP")
-    print(confusion_matrix)
-    print()
+    # confusion matrix
     tn = confusion_matrix[0][0]
     fp = confusion_matrix[0][1]
     fn = confusion_matrix[1][0]
     tp = confusion_matrix[1][1]
+    print("\nConfusion Matrix")
+    print("TN\t\tFP\nFN\t\tTP")
+    print(confusion_matrix, end="\n")
+    print(str(int(tn)) + "\t\t" + str(int(fp)) + "\n" + str(int(fn)) + "\t\t" + str(int(tp)), end="\n")
+    # metrics
     accuracy = (tp + tn) / (tp + tn + fp + fn)
-    precision = tp / (tp + fp)
-    specificity = tn / (tn + fp)
-    recall = tp / (tp + fn)
-    print(str(int(tn)) + "\t\t" + str(int(fp)) + "\n" + str(int(fn)) + "\t\t" + str(int(tp)))
-    print()
     print("Accuracy: {0} %".format(round(accuracy * 100, 2)))
-    print("Precision: {0} %".format(round(precision * 100, 2)))
-    print("Specificity: {0} %".format(round(specificity * 100, 2)))
-    print("Recall: {0} %\n".format(round(recall * 100, 2)))
+    if tp + fp == 0:
+        precision = tp / (tp + fp)
+        print("Precision: {0} %".format(round(precision * 100, 2)))
+    if tn + fp == 0:
+        specificity = tn / (tn + fp)
+        print("Specificity: {0} %".format(round(specificity * 100, 2)))
+    if tp + fn:
+        recall = tp / (tp + fn)
+        print("Recall: {0} %\n".format(round(recall * 100, 2)))
 
 
 def menu():
