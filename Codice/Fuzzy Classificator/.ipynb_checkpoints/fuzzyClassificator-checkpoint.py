@@ -39,11 +39,11 @@ def to_fuzzy():
             t = TriangularSet(constant.BINARY_MIN, constant.BINARY_MEAN, constant.BINARY_MAX)
         else:
             if dataset_file == "dataset_virtuale.csv":
-                if column == "IGA totali":
+                if column == "IGA_totali":
                     t = TriangularSet(constant.MIN_IGA, constant.MEAN_IGA, constant.MAX_IGA)
-                elif column == "TTG IGG":
+                elif column == "TTG_IGG":
                     t = TriangularSet(constant.TTG_IGG_MIN, constant.TTG_IGG_MEAN, constant.TTG_IGG_MAX)
-                elif column == "TTG IGG":
+                elif column == "TTG_IGG":
                     t = TriangularSet(constant.TTG_IGA_MIN, constant.TTG_IGA_MEAN, constant.TTG_IGA_MAX)
             else:
                 max_value = ff.max(data[column])

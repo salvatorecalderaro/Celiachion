@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <PyBrain>
-	<Network class="pybrain.structure.networks.feedforward.FeedForwardNetwork" name="FeedForwardNetwork-11">
-		<name val="'FeedForwardNetwork-11'"/>
+	<Network class="pybrain.structure.networks.feedforward.FeedForwardNetwork" name="FeedForwardNetwork-29">
+		<name val="'FeedForwardNetwork-29'"/>
 		<Modules>
 			<LinearLayer class="pybrain.structure.modules.linearlayer.LinearLayer" inmodule="True" name="in">
 				<name val="'in'"/>
@@ -16,43 +16,43 @@
 			</BiasUnit>
 			<SigmoidLayer class="pybrain.structure.modules.sigmoidlayer.SigmoidLayer" name="hidden0">
 				<name val="'hidden0'"/>
-				<dim val="3"/>
+				<dim val="6"/>
 			</SigmoidLayer>
 			<SigmoidLayer class="pybrain.structure.modules.sigmoidlayer.SigmoidLayer" name="hidden1">
 				<name val="'hidden1'"/>
-				<dim val="2"/>
+				<dim val="4"/>
 			</SigmoidLayer>
 		</Modules>
 		<Connections>
-			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-7">
+			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-26">
 				<inmod val="bias"/>
 				<outmod val="out"/>
-				<Parameters>[0.6131545083835648]</Parameters>
+				<Parameters>[0.5647993082146886]</Parameters>
 			</FullConnection>
-			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-8">
+			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-27">
 				<inmod val="bias"/>
 				<outmod val="hidden0"/>
-				<Parameters>[0.4075018452893576, 1.7868766422683962, -2.6542250038415927]</Parameters>
+				<Parameters>[0.3729720641948748, -0.31885363923963883, -0.6915329027617099, 1.4884513932789583, -0.24592255151579234, -0.5483985842621756]</Parameters>
 			</FullConnection>
-			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-9">
+			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-28">
 				<inmod val="bias"/>
 				<outmod val="hidden1"/>
-				<Parameters>[-0.16602123812935948, 0.07928710158045699]</Parameters>
+				<Parameters>[-0.8208760562652359, 0.44445799629855515, -0.6089032949954737, -0.03366932309292897]</Parameters>
 			</FullConnection>
-			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-6">
+			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-24">
 				<inmod val="in"/>
 				<outmod val="hidden0"/>
-				<Parameters>[-0.07489562102688753, -0.21147742617784368, -0.5966628708933337, 1.5059768452543865, -0.8623210881557927, 0.381941303369246, 0.374404406811804, 0.02938860689924783, -0.3096072475184807, -0.6393967077504566, -1.7498658012570272, -0.03303208660517594, -0.6132528509951314, 0.12409921061657748, -0.7766723963633854, 0.3685160041563799, 0.3728992183267156, -1.2458219312467367, -0.6809372429896896, 0.9133188052168653, -0.07532427768584897, 0.2568323529371209, -0.06713767366673216, -0.2537641114959948, -0.642926137945266, 0.5695182185144151, 0.5880517289302707, 0.15036676505859034, 2.5042027777529445, 0.44623598622796723, 0.5682871137711277, -0.9874744547153137, 2.263283819251018]</Parameters>
+				<Parameters>[2.951561678228006, 0.9221672735340063, 1.9927541192108398, -1.7445960911558296, -1.3594940464150989, 0.3972022024400802, 1.1987500988771445, -0.386602657718328, 0.016053197239920946, -0.997130327278202, 1.7487890703109266, 1.5208907136568077, 1.0642878247966818, -1.032224178937585, -0.9808479968113061, -0.22144783041687247, -0.41133724454097176, 0.7661002764557765, 0.14282503277993616, 1.6163758363033276, -0.11762890173777414, 1.0595067817402004, 1.476777718228231, -0.5082011375574109, 0.15155981502552865, 0.5117851387518536, -0.010252442062519143, -0.6982938328281041, 1.786422659346161, 0.13573179564107887, 0.8586012914217388, 2.0770748828288537, 0.5264177768893731, -0.9128593598344199, -0.6796407969350554, 1.01397413053008, -0.8005559498426459, -0.50656741590753, -0.24673951992125842, 0.08272841450603341, -0.42697987660098374, 0.8045721063504339, 0.971650498857895, 0.33347052160417157, 1.1454333012227376, -0.3659005394208307, 1.3475720100098971, 0.47260620699486233, 0.11683749296666333, 0.28149066895756486, -1.637102746644574, -1.1247675734390528, 2.102137491254272, -0.33368797260147837, -0.26940855908700523, -0.6544072242430139, -0.24553165609112554, 0.7073346013388404, 0.7426805678062479, 0.6255566277639155, 0.6906637810099292, 2.3596136249629898, 0.38385597054011106, -0.09964397381204607, -1.1850324803970897, 0.43131910805569595]</Parameters>
 			</FullConnection>
-			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-10">
+			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-23">
 				<inmod val="hidden0"/>
 				<outmod val="hidden1"/>
-				<Parameters>[-0.7662546026754973, -1.0922801799633863, 1.5345659282566293, 0.1498363585201704, -0.417278498839819, -2.1094518826879085]</Parameters>
+				<Parameters>[-0.9289088258851708, 0.22726527155653756, 0.7830855991767903, -0.6431695755974836, -0.1295399803542172, 2.0185399178296746, 0.3640081163418577, -1.317981637358841, -2.039674661277661, -1.0141041313150696, 0.6483248016131399, -0.05157103821913495, -2.066603467231869, 0.08411155901251004, -0.3705319233892997, 0.8904667113630617, 0.2609298580267621, -1.034198251352865, 0.14280658994211032, -0.28902003986866615, 0.039496113393873704, -0.9478575607874955, 1.1263424844872245, -1.6713109009106806]</Parameters>
 			</FullConnection>
-			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-5">
+			<FullConnection class="pybrain.structure.connections.full.FullConnection" name="FullConnection-25">
 				<inmod val="hidden1"/>
 				<outmod val="out"/>
-				<Parameters>[1.0911985096613157, -1.95623921110871]</Parameters>
+				<Parameters>[1.245638154784936, -1.0024048393188871, -1.8941364575353912, -1.3259862267138378]</Parameters>
 			</FullConnection>
 		</Connections>
 	</Network>

@@ -5,7 +5,7 @@ import dataset_row
 
 dataset_path = "dataset_virtuale.csv"
 columns = ["Anemia", "Osteopenia", "Diarrea Cronica", "Mancata Crescita", "Disturbi Genetici", "Madre Celiaca",
-               "POCT", "IGA totali", "TTG IGG", "TTG IGA", "Esami del sangue", "Class"]
+               "POCT", "IGA_totali", "TTG_IGG", "TTG_IGA", "Esami del sangue", "Class"]
 
 
 def generate_negative_patient():

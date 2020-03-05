@@ -49,7 +49,7 @@ def split_dataset(till_survey_dataset_file, till_poct_dataset_file, till_blood_t
     for index, row in dataframe.iterrows():
         if not np.isnan(row["Esami del sangue"]):
             till_blood_tests_dataframe = till_blood_tests_dataframe.append(row, ignore_index=True)
-    for column in ["TTG IGG", "TTG IGA"]:
+    for column in ["TTG_IGG", "TTG_IGA"]:
         till_blood_tests_dataframe[column] = pd.to_numeric(till_blood_tests_dataframe[column])
         replace_with = float(till_blood_tests_dataframe[column].sum()) / till_blood_tests_dataframe.shape[0]
         till_blood_tests_dataframe[column].fillna(replace_with, inplace=True)
@@ -61,12 +61,12 @@ def split_dataset(till_survey_dataset_file, till_poct_dataset_file, till_blood_t
     complete_dataframe = pd.DataFrame(columns=dataframe.columns)
     for index, row in dataframe.iterrows():
         complete_dataframe = complete_dataframe.append(row, ignore_index=True)
-    for column in ["TTG IGG", "TTG IGA", "Esami del sangue"]:
+    for column in ["IGA_totali", "TTG_IGG", "TTG_IGA", "Esami del sangue"]:
         complete_dataframe[column] = pd.to_numeric(complete_dataframe[column])
         replace_with = float(complete_dataframe[column].sum()) / complete_dataframe.shape[0]
         complete_dataframe[column].fillna(replace_with, inplace=True)
     for column in ["Anemia", "Osteopenia", "Diarrea Cronica", "Mancata Crescita", "Disturbi Genetici",
-                   "Madre Celiaca", "POCT", "Esami del sangue", "Class"]:
+                   "Madre Celiaca", "POCT", "Class"]:
         complete_dataframe[column] = pd.to_numeric(complete_dataframe[column], downcast="integer")
     complete_dataframe.to_csv("../Datasets/" + complete_dataset_file, index=False, na_rep=np.nan)
 
@@ -89,13 +89,13 @@ def prepare_dataset(dataset_file, dataset_name):
         if column == "POCT":
             triangular_set = fl.TriangularSet(constant.POCT_MIN, constant.POCT_MEAN, constant.POCT_MAX)
             dataset[column] = triangular_set(np.array(dataset[column]))
-        elif column == "IGA totali":
+        elif column == "IGA_totali":
             triangular_set = fl.TriangularSet(constant.MIN_IGA, constant.MEAN_IGA, constant.MAX_IGA)
             dataset[column] = triangular_set(np.array(dataset[column]))
-        elif column == "TTG IGG":
+        elif column == "TTG_IGG":
             triangular_set = fl.TriangularSet(constant.TTG_IGG_MIN, constant.TTG_IGG_MEAN, constant.TTG_IGG_MAX)
             dataset[column] = triangular_set(np.array(dataset[column]))
-        elif column == "TTG IGA":
+        elif column == "TTG_IGA":
             triangular_set = fl.TriangularSet(constant.TTG_IGA_MIN, constant.TTG_IGA_MEAN, constant.TTG_IGA_MAX)
             dataset[column] = triangular_set(np.array(dataset[column]))
     train, test = train_test_split(dataset, test_size=0.3, random_state=0)
