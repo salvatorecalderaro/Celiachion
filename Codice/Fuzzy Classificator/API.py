@@ -1,24 +1,63 @@
 import os
-import constant
 import pandas as pd
 import numpy as np
 import FuzzyClassificator as fc
 import fylearn.fuzzylogic as fl
 from FCLogger import SetLevel
-from sklearn.model_selection import train_test_split
+import constant
 
 
-neuro_networks_path = "Neuro Networks/Virtual Dataset/"
-resource_path = "../Datasets/Virtual Dataset/"
-dataset_file = "virtual_dataset.csv"
-till_survey_dataset_file = "till_survey_virtual_dataset.csv"
+neuro_networks_path = "Neuro Networks/Real Dataset/"
+resource_path = "../Datasets/Real Dataset/"
+dataset_file = "real_dataset.csv"
+till_survey_dataset_file = "till_survey_real_dataset.csv"
 till_survey_dataset_name = "survey"
-till_poct_dataset_file = "till_poct_virtual_dataset.csv"
+till_poct_dataset_file = "till_poct_real_dataset.csv"
 till_poct_dataset_name = "poct"
-till_blood_tests_dataset_file = "till_blood_tests_virtual_dataset.csv"
+till_blood_tests_dataset_file = "till_blood_tests_real_dataset.csv"
 till_blood_tests_dataset_name = "blood_tests"
-complete_dataset_file = "complete_virtual_dataset.csv"
+complete_dataset_file = "complete_real_dataset.csv"
 complete_dataset_name = "complete"
+current_patient_file = "current_patient.csv"
+current_patient_name = "current_patient"
+
+"""
+def to_fuzzy(dataset):
+    dataset = dataset.replace("nan", np.NaN)
+    for column in ["IGA totali", "TTG IGG", "TTG_IGA"]:
+        dataset[column] = pd.to_numeric(dataset[column])
+        if(column == "IGA totali"):
+            replace_with = constant.MEAN_IGA
+            dataset[column].fillna(replace_with, inplace=True)
+        if(column == "TTG IGG"):
+            replace_with = constant.TTG_IGG_MEAN
+            dataset[column].fillna(replace_with, inplace=True)
+        # Vedere quali valori attribuire ai NaN (anche quelli di esami del sangue)
+        if(column == 'TTG_IGA'):
+            replace_with = constant.TTG_IGA_MEAN
+            dataset[column].fillna(replace_with, inplace=True)
+
+    for column in dataset.columns[0:-1]:
+        x = np.unique(dataset[column])
+        if 1 < len(x) < 4 and x.__contains__(1) and x.__contains__(0):
+            t = fl.TriangularSet(constant.BINARY_MIN, constant.BINARY_MEAN, constant.BINARY_MAX)
+        else:
+            if column == "POCT":
+                triangular_set = fl.TriangularSet(constant.POCT_MIN, constant.POCT_MEAN, constant.POCT_MAX)
+                dataset[column] = triangular_set(np.array(dataset[column]))
+            elif column == "IGA totali":
+                triangular_set = fl.TriangularSet(constant.MIN_IGA, constant.MEAN_IGA, constant.MAX_IGA)
+                dataset[column] = triangular_set(np.array(dataset[column]))
+            elif column == "TTG IGG":
+                triangular_set = fl.TriangularSet(constant.TTG_IGG_MIN, constant.TTG_IGG_MEAN, constant.TTG_IGG_MAX)
+                dataset[column] = triangular_set(np.array(dataset[column]))
+            elif column == "TTG_IGA":
+                triangular_set = fl.TriangularSet(constant.TTG_IGA_MIN, constant.TTG_IGA_MEAN, constant.TTG_IGA_MAX)
+                dataset[column] = triangular_set(np.array(dataset[column]))
+    pazienti_fuzzy = pd.read_csv(resource_path + "pazienti_reali_fuzzy.csv")
+    pazienti_fuzzy = pazienti_fuzzy.append(dataset)
+    pazienti_fuzzy.to_csv(resource_path + "pazienti_reali_fuzzy.csv", index=False)
+"""
 
 
 def split_dataset(till_survey_dataset_file, till_poct_dataset_file, till_blood_tests_dataset_file, complete_dataset_file):
@@ -70,9 +109,8 @@ def split_dataset(till_survey_dataset_file, till_poct_dataset_file, till_blood_t
     complete_dataframe.to_csv(resource_path + complete_dataset_file, index=False, na_rep=np.nan)
 
 
-def prepare_classificator(dataset_name):
+def prepare_learning_mode(dataset_name):
     fc.ethalonsDataFile = neuro_networks_path + "ethalons_" + dataset_name + ".csv"
-    fc.candidatesDataFile = neuro_networks_path + "candidates_" + dataset_name + ".csv"
     fc.neuroNetworkFile = neuro_networks_path + "network_" + dataset_name + ".xml"
     fc.reportDataFile = neuro_networks_path + "report_" + dataset_name + ".txt"
     fc.bestNetworkFile = neuro_networks_path + "best_nn_" + dataset_name + ".xml"
@@ -97,13 +135,19 @@ def prepare_dataset(dataset_file, dataset_name):
         elif column == "TTG_IGA":
             triangular_set = fl.TriangularSet(constant.TTG_IGA_MIN, constant.TTG_IGA_MEAN, constant.TTG_IGA_MAX)
             dataset[column] = triangular_set(np.array(dataset[column]))
-    train, test = train_test_split(dataset, test_size=0.3, random_state=0)
-    train.to_csv(neuro_networks_path + "ethalons_" + dataset_name + ".csv", index=False)
-    test.to_csv(neuro_networks_path + "candidates_" + dataset_name + ".csv", index=False)
+    dataset.to_csv(neuro_networks_path + "ethalons_" + dataset_name + ".csv", index=False)
+
+
+def update_real_dataset(new_patients):
+    patients = pd.DataFrame()
+    if os.path.isfile(resource_path + dataset_file):
+        patients = pd.read_csv(resource_path + dataset_file)
+        pd.concat([patients, new_patients]).to_csv(resource_path + dataset_file, index=False, na_rep=np.nan)
+    else:
+        new_patients.to_csv(resource_path + dataset_file, index=False, na_rep=np.nan)
 
 
 def learning_mode(num_columns, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer):
-    os.system("clear")
     parameters = {
         "config": str(num_columns) + ","
         + str(num_neurons_first_hidden_layer) + ","
@@ -118,7 +162,6 @@ def learning_mode(num_columns, num_neurons_first_hidden_layer, num_neurons_secon
 
 
 def classifying_mode(num_columns, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer):
-    os.system("clear")
     parameters = {
         "config": str(num_columns) + ","
         + str(num_neurons_first_hidden_layer) + ","
@@ -132,141 +175,27 @@ def classifying_mode(num_columns, num_neurons_first_hidden_layer, num_neurons_se
     fc.Main(classifyParameters=parameters)
 
 
-def evaluate_classifier():
-    confusion_matrix = np.zeros((2, 2))
-    counter = 0
-    med_counter = 0
-    med_positive = 0
-    med_negative = 0
-    with open(fc.reportDataFile) as report:
-        for line in report:
-            index = line.find("Output")
-            if index != -1:
-                counter += 1
-                line = line[index:]
-                if line.__contains__("Min") or line.__contains__("Low"):
-                    if line.__contains__("0"):
-                        confusion_matrix[0][0] += 1
-                    else:
-                        confusion_matrix[1][0] += 1
-                elif line.__contains__("Max") or line.__contains__("High"):
-                    if line.__contains__("1"):
-                        confusion_matrix[1][1] += 1
-                    else:
-                        confusion_matrix[0][1] += 1
-                else:
-                    med_counter += 1
-                    if line.__contains__("0"):
-                        med_negative += 1
-                    else:
-                        med_positive += 1
-    if med_negative > med_positive:
-        confusion_matrix[0][0] += med_negative
-        confusion_matrix[1][0] += med_positive
-        med_value = "negative"
-    else:
-        confusion_matrix[1][1] += med_positive
-        confusion_matrix[0][1] += med_negative
-        med_value = "positive"
-    print("Tot values classified: " + str(counter))
-    print("Number of med values: " + str(med_counter))
-    print("Negative Med correspondence: " + str(med_negative))
-    print("Positive Med correspondence: " + str(med_positive))
-    print("Med value chosen: " + str(med_value), end="\n\n")
-    print_report(confusion_matrix)
-
-
-def print_report(confusion_matrix):
-    # confusion matrix
-    tn = confusion_matrix[0][0]
-    fp = confusion_matrix[0][1]
-    fn = confusion_matrix[1][0]
-    tp = confusion_matrix[1][1]
-    print("Confusion matrix:")
-    print("TN: " + str(int(tn)))
-    print("FP: " + str(int(fp)))
-    print("FN: " + str(int(fn)))
-    print("TP: " + str(int(tp)), end="\n\n")
-    # metrics
-    accuracy = (tp + tn) / (tp + tn + fp + fn)
-    print("Accuracy: {0} %".format(round(accuracy * 100, 2)))
-    if tp + fp != 0:
-        precision = tp / (tp + fp)
-        print("Precision: {0} %".format(round(precision * 100, 2)))
-    if tn + fp != 0:
-        specificity = tn / (tn + fp)
-        print("Specificity: {0} %".format(round(specificity * 100, 2)))
-    if tp + fn != 0:
-        recall = tp / (tp + fn)
-        print("Recall: {0} %\n".format(round(recall * 100, 2)))
-
-
-def menu():
-    os.system("clear")
-    print("--------------------------------")
-    print("1. Survey")
-    print("2. Survey and POCT")
-    print("3. Survey, POCT and blood tests")
-    print("4. Complete")
-    print("0. Exit")
-    print("--------------------------------")
-    print()
-    temp = int(input())
-    print()
-    return temp
-
-
-def sub_menu():
-    os.system("clear")
-    print("--------------------------------")
-    print("1. Train classifier")
-    print("2. Classify")
-    print("3. Evaluate classifier")
-    print("0. Main menu")
-    print("--------------------------------")
-    print()
-    temp = int(input())
-    print()
-    return temp
-
-
-dataframe = pd.read_csv(resource_path + dataset_file, index_col=False)
-split_dataset(till_survey_dataset_file, till_poct_dataset_file, till_blood_tests_dataset_file, complete_dataset_file)
-prepare_dataset(till_survey_dataset_file, till_survey_dataset_name)
-prepare_dataset(till_poct_dataset_file, till_poct_dataset_name)
-prepare_dataset(till_blood_tests_dataset_file, till_blood_tests_dataset_name)
-prepare_dataset(complete_dataset_file, complete_dataset_name)
-c = -1
-while c != 0:
-    c = menu()
-    if c > 0 and c < 5:
-        num_params = -1
-        num_neurons_first_hidden_layer = int(input("Number of neurons in first hidden layer: "))
-        num_neurons_second_hidden_layer = int(input("Number of neurons in second hidden layer: "))
-        if c == 1:
-            prepare_classificator(till_survey_dataset_name)
-            num_params = 6
-        elif c == 2:
-            prepare_classificator(till_poct_dataset_name)
-            num_params = 7
-        elif c == 3:
-            prepare_classificator(till_blood_tests_dataset_name)
-            num_params = 11
-        elif c == 4:
-            prepare_classificator(complete_dataset_name)
-            num_params = 11
-        sc = -1
-        while sc != 0:
-            sc = sub_menu()
-            if sc > 0 and sc < 4:
-                if sc == 1:
-                    learning_mode(num_params, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
-                elif sc == 2:
-                    classifying_mode(num_params, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
-                elif sc == 3:
-                    evaluate_classifier()
-                input("\nPress enter to continue!")
-            elif sc != 0:
-                print("Unknown command. Please, try again: ", end="")
-    elif c != 0:
-        print("Unknown command. Please, try again: ", end="")
+new_patients = pd.read_json("example.json")
+num_neurons_first_hidden_layer = 6
+num_neurons_second_hidden_layer = 4
+if "Class" in new_patients:
+    update_real_dataset(new_patients)
+    dataframe = pd.read_csv(resource_path + dataset_file, index_col=False)
+    split_dataset(till_survey_dataset_file, till_poct_dataset_file, till_blood_tests_dataset_file, complete_dataset_file)
+    prepare_dataset(till_survey_dataset_file, till_survey_dataset_name)
+    prepare_dataset(till_poct_dataset_file, till_poct_dataset_name)
+    prepare_dataset(till_blood_tests_dataset_file, till_blood_tests_dataset_name)
+    prepare_dataset(complete_dataset_file, complete_dataset_name)
+    prepare_learning_mode(till_survey_dataset_name)
+    learning_mode(6, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
+    prepare_learning_mode(till_poct_dataset_name)
+    learning_mode(7, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
+    prepare_learning_mode(till_blood_tests_dataset_name)
+    learning_mode(11, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
+    prepare_learning_mode(complete_dataset_name)
+    learning_mode(11, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
+else:
+    for index, patient in new_patients.iterrows():
+        print("\nClassificazione paziente " + str(index + 1) + ":\n" + str(patient) + "\n")
+        pd.DataFrame(patient).transpose().to_csv(resource_path + current_patient_file, index=False, na_rep=np.nan)
+        prepare_dataset(current_patient_file, current_patient_name)

@@ -1,0 +1,28 @@
+[
+  {
+    "Anemia": 0,
+    "Osteopenia": 0,
+    "Diarrea Cronica": 0,
+    "Mancata Crescita": 1,
+    "Disturbi Genetici": 0,
+    "Madre Celiaca": 0,
+    "POCT": 0,
+    "IGA_totali": "NaN",
+    "TTG_IGG" : 0,
+    "TTG_IGA": "NaN",
+    "Esami del sangue": 0,
+  },
+  {
+    "Anemia": 1,
+    "Osteopenia": 0,
+    "Diarrea Cronica": 0,
+    "Mancata Crescita": 1,
+    "Disturbi Genetici": 0,
+    "Madre Celiaca": 0,
+    "POCT": 0,
+    "IGA_totali": "NaN",
+    "TTG_IGG": 53.4,
+    "TTG_IGA": "NaN",
+    "Esami del sangue": 1,
+  }
+]

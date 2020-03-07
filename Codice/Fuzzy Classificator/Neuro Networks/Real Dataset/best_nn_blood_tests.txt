@@ -1,0 +1,75 @@
+Best network common results:
+    Config: (11, 6, 4, 1)
+    Epoch: 25
+    Number of error vectors (Euclidian norm > epsilon): 0.0% (0 of 2)
+
+All of learning parameters of FuzzyNeuroNetwork object:
+--------------------------------------------------------------------------------
+    _epochs = 100
+
+    _epochsToUpdate = 5
+
+    _epsilon = 0.05
+
+    _ignoreColumns = []
+
+    _ignoreRows = [0]
+
+    _learningRate = 0.5
+
+    _momentum = 0.5
+
+    _rawData = [['0', '0', '0', '1', '0', '0', '0.0', '0.0', '1.0', '0.0', '0', '0'], ['1', '0', '0', '1', '0', '0', '0.0', '0.0', '0.0', '0.0', '1', '1']]
+
+    _rawDefuzData = [[0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0]]
+
+    _separator = ,
+
+    _stop = 1.0
+
+    bestNetworkFalsePercent = 0.0
+
+    bestNetworkFile = Neuro Networks/Real Dataset/best_nn_blood_tests.xml
+
+    bestNetworkInfoFile = Neuro Networks/Real Dataset/best_nn_blood_tests.txt
+
+    config = (11, 6, 4, 1)
+
+    currentFalsePercent = 0.0
+
+    dataSet = input: dim(2, 11)
+[[0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0.]
+ [1. 0. 0. 1. 0. 0. 0. 0. 0. 0. 1.]]
+
+target: dim(2, 1)
+[[0.]
+ [1.]]
+
+
+
+    headers = ['Anemia', 'Osteopenia', 'Diarrea Cronica', 'Mancata Crescita', 'Disturbi Genetici', 'Madre Celiaca', 'POCT', 'IGA_totali', 'TTG_IGG', 'TTG_IGA', 'Esami del sangue', 'Class']
+
+    network = FeedForwardNetwork-37
+   Modules:
+    [<BiasUnit 'bias'>, <LinearLayer 'in'>, <SigmoidLayer 'hidden0'>, <SigmoidLayer 'hidden1'>, <LinearLayer 'out'>]
+   Connections:
+    [<FullConnection 'FullConnection-31': 'hidden0' -> 'hidden1'>, <FullConnection 'FullConnection-32': 'in' -> 'hidden0'>, <FullConnection 'FullConnection-33': 'hidden1' -> 'out'>, <FullConnection 'FullConnection-34': 'bias' -> 'out'>, <FullConnection 'FullConnection-35': 'bias' -> 'hidden0'>, <FullConnection 'FullConnection-36': 'bias' -> 'hidden1'>]
+
+
+    networkFile = Neuro Networks/Real Dataset/network_blood_tests.xml
+
+    progress = 25.0
+
+    rawDataFile = Neuro Networks/Real Dataset/ethalons_blood_tests.csv
+
+    reportFile = Neuro Networks/Real Dataset/report_blood_tests.txt
+
+    scale = FuzzyScale = {Min, Low, Med, High, Max}
+    Min = <Hyperbolic(x, {"a": 8, "b": 20, "c": 0}), [0.0, 0.23]>
+    Low = <Bell(x, {"a": 0.17, "b": 0.23, "c": 0.34}), [0.17, 0.4]>
+    Med = <Bell(x, {"a": 0.34, "b": 0.4, "c": 0.6}), [0.34, 0.66]>
+    High = <Bell(x, {"a": 0.6, "b": 0.66, "c": 0.77}), [0.6, 0.83]>
+    Max = <Parabolic(x, {"a": 0.77, "b": 0.95}), [0.77, 1.0]>
+
+    trainer = <BackpropTrainer 'BackpropTrainer-38'>
+

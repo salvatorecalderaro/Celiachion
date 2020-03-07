@@ -3,7 +3,7 @@ import csv
 import constant
 import dataset_row
 
-dataset_path = "dataset_virtuale.csv"
+dataset_path = "virtual_dataset.csv"
 columns = ["Anemia", "Osteopenia", "Diarrea Cronica", "Mancata Crescita", "Disturbi Genetici", "Madre Celiaca",
                "POCT", "IGA_totali", "TTG_IGG", "TTG_IGA", "Esami del sangue", "Class"]
 
