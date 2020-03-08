@@ -1,7 +1,7 @@
 Best network common results:
     Config: (7, 6, 4, 1)
     Epoch: 55
-    Number of error vectors (Euclidian norm > epsilon): 0.0% (0 of 2)
+    Number of error vectors (Euclidian norm > epsilon): 50.0% (2 of 4)
 
 All of learning parameters of FuzzyNeuroNetwork object:
 --------------------------------------------------------------------------------
@@ -19,15 +19,15 @@ All of learning parameters of FuzzyNeuroNetwork object:
 
     _momentum = 0.5
 
-    _rawData = [['0', '0', '0', '1', '0', '0', '0.0', '0'], ['1', '0', '0', '1', '0', '0', '0.0', '1']]
+    _rawData = [['0', '0', '0', '1', '0', '0', '0.0', '0.0'], ['1', '0', '0', '1', '0', '0', '0.0', '1.0'], ['0', '0', '0', '1', '0', '0', '0.0', ''], ['1', '0', '0', '1', '0', '0', '0.0', '']]
 
-    _rawDefuzData = [[0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]]
+    _rawDefuzData = [[0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0], [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0], [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0]]
 
     _separator = ,
 
     _stop = 1.0
 
-    bestNetworkFalsePercent = 0.0
+    bestNetworkFalsePercent = 50.0
 
     bestNetworkFile = Neuro Networks/Real Dataset/best_nn_poct.xml
 
@@ -35,15 +35,19 @@ All of learning parameters of FuzzyNeuroNetwork object:
 
     config = (7, 6, 4, 1)
 
-    currentFalsePercent = 0.0
+    currentFalsePercent = 50.0
 
-    dataSet = input: dim(2, 7)
+    dataSet = input: dim(6, 7)
 [[0. 0. 0. 1. 0. 0. 0.]
+ [1. 0. 0. 1. 0. 0. 0.]
+ [0. 0. 0. 1. 0. 0. 0.]
  [1. 0. 0. 1. 0. 0. 0.]]
 
-target: dim(2, 1)
+target: dim(6, 1)
 [[0.]
- [1.]]
+ [1.]
+ [0.]
+ [0.]]
 
 
 
@@ -53,7 +57,7 @@ target: dim(2, 1)
    Modules:
     [<BiasUnit 'bias'>, <LinearLayer 'in'>, <SigmoidLayer 'hidden0'>, <SigmoidLayer 'hidden1'>, <LinearLayer 'out'>]
    Connections:
-    [<FullConnection 'FullConnection-18': 'in' -> 'hidden0'>, <FullConnection 'FullConnection-19': 'bias' -> 'out'>, <FullConnection 'FullConnection-20': 'bias' -> 'hidden0'>, <FullConnection 'FullConnection-21': 'bias' -> 'hidden1'>, <FullConnection 'FullConnection-22': 'hidden0' -> 'hidden1'>, <FullConnection 'FullConnection-23': 'hidden1' -> 'out'>]
+    [<FullConnection 'FullConnection-18': 'bias' -> 'out'>, <FullConnection 'FullConnection-19': 'bias' -> 'hidden0'>, <FullConnection 'FullConnection-20': 'bias' -> 'hidden1'>, <FullConnection 'FullConnection-21': 'hidden1' -> 'out'>, <FullConnection 'FullConnection-22': 'in' -> 'hidden0'>, <FullConnection 'FullConnection-23': 'hidden0' -> 'hidden1'>]
 
 
     networkFile = Neuro Networks/Real Dataset/network_poct.xml

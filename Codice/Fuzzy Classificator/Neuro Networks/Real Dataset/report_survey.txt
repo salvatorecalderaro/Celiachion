@@ -1,0 +1,14 @@
+Neuronet: /home/dario/GoogleDrive/università/celiachia/Celiachion/Codice/Fuzzy Classificator/Neuro Networks/Real Dataset/network_survey.xml
+
+FuzzyScale = {Min, Low, Med, High, Max}
+    Min = <Hyperbolic(x, {"a": 8, "b": 20, "c": 0}), [0.0, 0.23]>
+    Low = <Bell(x, {"a": 0.17, "b": 0.23, "c": 0.34}), [0.17, 0.4]>
+    Med = <Bell(x, {"a": 0.34, "b": 0.4, "c": 0.6}), [0.34, 0.66]>
+    High = <Bell(x, {"a": 0.6, "b": 0.66, "c": 0.77}), [0.6, 0.83]>
+    Max = <Parabolic(x, {"a": 0.77, "b": 0.95}), [0.77, 1.0]>
+
+Classification results for candidates vectors:
+
+    Header: [Anemia Osteopenia Diarrea Cronica Mancata Crescita Disturbi Genetici Madre Celiaca]	[Class]
+    ----------------------------------------------------------------------------------------------------
+    Input: ['1.0', '0.0', '0.0', '1.0', '0.0', '0.0']	Output: ['Med']

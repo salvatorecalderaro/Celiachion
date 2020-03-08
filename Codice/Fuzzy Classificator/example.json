@@ -11,6 +11,7 @@
     "TTG_IGG" : 0,
     "TTG_IGA": "NaN",
     "Esami del sangue": 0,
+    "Class": "Nan"
   },
   {
     "Anemia": 1,
@@ -24,5 +25,6 @@
     "TTG_IGG": 53.4,
     "TTG_IGA": "NaN",
     "Esami del sangue": 1,
+    "Class": "Nan"
   }
 ]

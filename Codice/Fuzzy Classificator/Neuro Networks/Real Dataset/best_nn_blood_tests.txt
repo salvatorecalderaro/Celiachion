@@ -1,7 +1,7 @@
 Best network common results:
     Config: (11, 6, 4, 1)
-    Epoch: 25
-    Number of error vectors (Euclidian norm > epsilon): 0.0% (0 of 2)
+    Epoch: 75
+    Number of error vectors (Euclidian norm > epsilon): 50.0% (2 of 4)
 
 All of learning parameters of FuzzyNeuroNetwork object:
 --------------------------------------------------------------------------------
@@ -19,15 +19,15 @@ All of learning parameters of FuzzyNeuroNetwork object:
 
     _momentum = 0.5
 
-    _rawData = [['0', '0', '0', '1', '0', '0', '0.0', '0.0', '1.0', '0.0', '0', '0'], ['1', '0', '0', '1', '0', '0', '0.0', '0.0', '0.0', '0.0', '1', '1']]
+    _rawData = [['0', '0', '0', '1', '0', '0', '0.0', '0.0', '1.0', '0.0', '0', '0.0'], ['1', '0', '0', '1', '0', '0', '0.0', '0.0', '0.0', '0.0', '1', '1.0'], ['0', '0', '0', '1', '0', '0', '0.0', '0.0', '1.0', '0.0', '0', ''], ['1', '0', '0', '1', '0', '0', '0.0', '0.0', '0.0', '0.0', '1', '']]
 
-    _rawDefuzData = [[0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0]]
+    _rawDefuzData = [[0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0], [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0], [1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0]]
 
     _separator = ,
 
     _stop = 1.0
 
-    bestNetworkFalsePercent = 0.0
+    bestNetworkFalsePercent = 50.0
 
     bestNetworkFile = Neuro Networks/Real Dataset/best_nn_blood_tests.xml
 
@@ -35,15 +35,19 @@ All of learning parameters of FuzzyNeuroNetwork object:
 
     config = (11, 6, 4, 1)
 
-    currentFalsePercent = 0.0
+    currentFalsePercent = 50.0
 
-    dataSet = input: dim(2, 11)
+    dataSet = input: dim(6, 11)
 [[0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0.]
+ [1. 0. 0. 1. 0. 0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0.]
  [1. 0. 0. 1. 0. 0. 0. 0. 0. 0. 1.]]
 
-target: dim(2, 1)
+target: dim(6, 1)
 [[0.]
- [1.]]
+ [1.]
+ [0.]
+ [0.]]
 
 
 
@@ -53,12 +57,12 @@ target: dim(2, 1)
    Modules:
     [<BiasUnit 'bias'>, <LinearLayer 'in'>, <SigmoidLayer 'hidden0'>, <SigmoidLayer 'hidden1'>, <LinearLayer 'out'>]
    Connections:
-    [<FullConnection 'FullConnection-31': 'hidden0' -> 'hidden1'>, <FullConnection 'FullConnection-32': 'in' -> 'hidden0'>, <FullConnection 'FullConnection-33': 'hidden1' -> 'out'>, <FullConnection 'FullConnection-34': 'bias' -> 'out'>, <FullConnection 'FullConnection-35': 'bias' -> 'hidden0'>, <FullConnection 'FullConnection-36': 'bias' -> 'hidden1'>]
+    [<FullConnection 'FullConnection-31': 'bias' -> 'out'>, <FullConnection 'FullConnection-32': 'bias' -> 'hidden0'>, <FullConnection 'FullConnection-33': 'bias' -> 'hidden1'>, <FullConnection 'FullConnection-34': 'in' -> 'hidden0'>, <FullConnection 'FullConnection-35': 'hidden0' -> 'hidden1'>, <FullConnection 'FullConnection-36': 'hidden1' -> 'out'>]
 
 
     networkFile = Neuro Networks/Real Dataset/network_blood_tests.xml
 
-    progress = 25.0
+    progress = 75.0
 
     rawDataFile = Neuro Networks/Real Dataset/ethalons_blood_tests.csv
 

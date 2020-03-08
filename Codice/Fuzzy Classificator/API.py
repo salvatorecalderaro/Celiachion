@@ -20,6 +20,8 @@ complete_dataset_file = "complete_real_dataset.csv"
 complete_dataset_name = "complete"
 current_patient_file = "current_patient.csv"
 current_patient_name = "current_patient"
+ETHALONS = 0
+CANDIDATES = 1
 
 """
 def to_fuzzy(dataset):
@@ -117,10 +119,23 @@ def prepare_learning_mode(dataset_name):
     fc.bestNetworkInfoFile = neuro_networks_path + "best_nn_" + dataset_name + ".txt"
     fc.sepSymbol = ","
     fc.showExpected = True
-    SetLevel("DEBUG")
+    #SetLevel("DEBUG")
+    SetLevel("ERROR")
 
 
-def prepare_dataset(dataset_file, dataset_name):
+def prepare_classify_mode(dataset_name, current_patient_name):
+    fc.candidatesDataFile = neuro_networks_path + "candidates_" + current_patient_name + ".csv"
+    fc.neuroNetworkFile = neuro_networks_path + "network_" + dataset_name + ".xml"
+    fc.reportDataFile = neuro_networks_path + "report_" + dataset_name + ".txt"
+    fc.bestNetworkFile = neuro_networks_path + "best_nn_" + dataset_name + ".xml"
+    fc.bestNetworkInfoFile = neuro_networks_path + "best_nn_" + dataset_name + ".txt"
+    fc.sepSymbol = ","
+    fc.showExpected = False
+    #SetLevel("DEBUG")
+    SetLevel("ERROR")
+
+
+def prepare_dataset(dataset_file, dataset_name, type):
     dataset = pd.read_csv(resource_path + dataset_file, index_col=False)
     for column in dataset.columns[0:-1]:
         if column == "POCT":
@@ -135,7 +150,10 @@ def prepare_dataset(dataset_file, dataset_name):
         elif column == "TTG_IGA":
             triangular_set = fl.TriangularSet(constant.TTG_IGA_MIN, constant.TTG_IGA_MEAN, constant.TTG_IGA_MAX)
             dataset[column] = triangular_set(np.array(dataset[column]))
-    dataset.to_csv(neuro_networks_path + "ethalons_" + dataset_name + ".csv", index=False)
+    if type == ETHALONS:
+        dataset.to_csv(neuro_networks_path + "ethalons_" + dataset_name + ".csv", index=False)
+    elif type == CANDIDATES:
+        dataset.to_csv(neuro_networks_path + "candidates_" + dataset_name + ".csv", index=False)
 
 
 def update_real_dataset(new_patients):
@@ -175,17 +193,49 @@ def classifying_mode(num_columns, num_neurons_first_hidden_layer, num_neurons_se
     fc.Main(classifyParameters=parameters)
 
 
+def print_result(dataset_name):
+    with open(fc.reportDataFile) as report_file:
+        for line in report_file:
+            index = line.find("Output")
+            if index != -1:
+                line = line[index:]
+                bracket_opening = line.find("[")
+                bracket_closing = line.find("]")
+                print("Classification for " + dataset_name + ":\t\t" + line[bracket_opening+2:bracket_closing-1])
+
+
 new_patients = pd.read_json("example.json")
 num_neurons_first_hidden_layer = 6
 num_neurons_second_hidden_layer = 4
-if "Class" in new_patients:
+if np.isnan(new_patients["Class"][0]):
+    print("---------------------------------------------------------------------")
+    for index, patient in new_patients.iterrows():
+        patient_data = str(patient)
+        print("Classification patient n. " + str(index + 1) + ":\n" + patient_data[:patient_data.find("Class")])
+        pd.DataFrame(patient).transpose().to_csv(resource_path + current_patient_file, index=False, na_rep=np.nan)
+        prepare_dataset(current_patient_file, current_patient_name, CANDIDATES)
+        prepare_classify_mode(till_survey_dataset_name, current_patient_name)
+        classifying_mode(6, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
+        print_result(till_survey_dataset_name)
+        prepare_classify_mode(till_poct_dataset_name, current_patient_name)
+        classifying_mode(7, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
+        print_result(till_poct_dataset_name)
+        if not np.isnan(patient["Esami del sangue"]):
+            prepare_classify_mode(till_blood_tests_dataset_name, current_patient_name)
+            classifying_mode(11, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
+            print_result(till_blood_tests_dataset_name)
+        prepare_classify_mode(complete_dataset_name, current_patient_name)
+        classifying_mode(11, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
+        print_result(complete_dataset_name)
+        print("---------------------------------------------------------------------")
+else:
     update_real_dataset(new_patients)
     dataframe = pd.read_csv(resource_path + dataset_file, index_col=False)
     split_dataset(till_survey_dataset_file, till_poct_dataset_file, till_blood_tests_dataset_file, complete_dataset_file)
-    prepare_dataset(till_survey_dataset_file, till_survey_dataset_name)
-    prepare_dataset(till_poct_dataset_file, till_poct_dataset_name)
-    prepare_dataset(till_blood_tests_dataset_file, till_blood_tests_dataset_name)
-    prepare_dataset(complete_dataset_file, complete_dataset_name)
+    prepare_dataset(till_survey_dataset_file, till_survey_dataset_name, ETHALONS)
+    prepare_dataset(till_poct_dataset_file, till_poct_dataset_name, ETHALONS)
+    prepare_dataset(till_blood_tests_dataset_file, till_blood_tests_dataset_name, ETHALONS)
+    prepare_dataset(complete_dataset_file, complete_dataset_name, ETHALONS)
     prepare_learning_mode(till_survey_dataset_name)
     learning_mode(6, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
     prepare_learning_mode(till_poct_dataset_name)
@@ -194,8 +244,3 @@ if "Class" in new_patients:
     learning_mode(11, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
     prepare_learning_mode(complete_dataset_name)
     learning_mode(11, num_neurons_first_hidden_layer, num_neurons_second_hidden_layer)
-else:
-    for index, patient in new_patients.iterrows():
-        print("\nClassificazione paziente " + str(index + 1) + ":\n" + str(patient) + "\n")
-        pd.DataFrame(patient).transpose().to_csv(resource_path + current_patient_file, index=False, na_rep=np.nan)
-        prepare_dataset(current_patient_file, current_patient_name)
