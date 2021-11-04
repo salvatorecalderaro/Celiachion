@@ -4,8 +4,20 @@ import constant
 import dataset_row
 
 dataset_path = "virtual_dataset.csv"
-columns = ["Anemia", "Osteopenia", "Diarrea Cronica", "Mancata Crescita", "Disturbi Genetici", "Madre Celiaca",
-               "POCT", "IGA_totali", "TTG_IGG", "TTG_IGA", "Esami del sangue", "Class"]
+columns = [
+    "Anemia",
+    "Osteopenia",
+    "Diarrea Cronica",
+    "Mancata Crescita",
+    "Disturbi Genetici",
+    "Madre Celiaca",
+    "POCT",
+    "IGA_totali",
+    "TTG_IGG",
+    "TTG_IGA",
+    "Esami del sangue",
+    "Class",
+]
 
 
 def generate_negative_patient():
@@ -69,7 +81,7 @@ def generate_positive_patient():
         if patient.POCT is constant.NEGATIVE_POCT:
             patient.set_TTG_iga_for_negative_patient()
         patient.set_blood_tests_from_TTG_iga()
-    #patient.biopsy = constant.POSITIVE_BIOPSY
+    # patient.biopsy = constant.POSITIVE_BIOPSY
     patient.Class = constant.POSITIVE_CLASS
     return patient
 
@@ -120,7 +132,7 @@ def create_dataset(num):
                 writer.writerow(generate_negative_patient().values())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("How many rows do you want? Please enter a multiple of 100")
     temp = int(input())
     while (type(temp) is not int) or (temp % 100 != 0):

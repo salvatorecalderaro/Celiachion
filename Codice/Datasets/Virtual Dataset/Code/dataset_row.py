@@ -16,7 +16,7 @@ class patient:
         self.TTG_igg = np.NaN
         self.TTG_iga = np.NaN
         self.blood_tests = np.NaN
-        #self.biopsy = np.NaN
+        # self.biopsy = np.NaN
         self.Class = np.NaN
 
     def is_POCT_negative(self):
@@ -26,8 +26,14 @@ class patient:
             return False
 
     def is_test_negative(self):
-        if (self.anemia is 0) and (self.osteopenia is 0) and (self.chronic_diarrhea is 0) and \
-                (self.growth_failure is 0) and (self.genetic_disorders is 0) and (self.celiac_mother is 0):
+        if (
+            (self.anemia is 0)
+            and (self.osteopenia is 0)
+            and (self.chronic_diarrhea is 0)
+            and (self.growth_failure is 0)
+            and (self.genetic_disorders is 0)
+            and (self.celiac_mother is 0)
+        ):
             return True
         else:
             return False
@@ -113,6 +119,6 @@ class patient:
         values.append(self.TTG_igg)
         values.append(self.TTG_iga)
         values.append(self.blood_tests)
-        #values.append(self.biopsy)
+        # values.append(self.biopsy)
         values.append(self.Class)
         return values

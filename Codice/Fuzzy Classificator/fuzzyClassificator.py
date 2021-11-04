@@ -21,7 +21,10 @@ def prepare_dataset():
         data = data.drop("referral_source", axis=1)
         data = data.drop("TBG", axis=1)
         data = data.drop("TBG_measured", axis=1)
-        data = data.replace(["F", "M", "t", "f", "?", "negative", "sick"], [0, 1, 1, 0, np.NaN, 0, 1])
+        data = data.replace(
+            ["F", "M", "t", "f", "?", "negative", "sick"],
+            [0, 1, 1, 0, np.NaN, 0, 1],
+        )
     if dataset_file == "cardiovascular.csv":
         data = data.drop("id", axis=1)
     num_columns = data.shape[1] - 1
@@ -40,11 +43,21 @@ def to_fuzzy():
         else:
             if dataset_file == "dataset_virtuale.csv":
                 if column == "IGA_totali":
-                    t = TriangularSet(constant.MIN_IGA, constant.MEAN_IGA, constant.MAX_IGA)
+                    t = TriangularSet(
+                        constant.MIN_IGA, constant.MEAN_IGA, constant.MAX_IGA
+                    )
                 elif column == "TTG_IGG":
-                    t = TriangularSet(constant.TTG_IGG_MIN, constant.TTG_IGG_MEAN, constant.TTG_IGG_MAX)
+                    t = TriangularSet(
+                        constant.TTG_IGG_MIN,
+                        constant.TTG_IGG_MEAN,
+                        constant.TTG_IGG_MAX,
+                    )
                 elif column == "TTG_IGA":
-                    t = TriangularSet(constant.TTG_IGA_MIN, constant.TTG_IGA_MEAN, constant.TTG_IGA_MAX)
+                    t = TriangularSet(
+                        constant.TTG_IGA_MIN,
+                        constant.TTG_IGA_MEAN,
+                        constant.TTG_IGA_MAX,
+                    )
             else:
                 max_value = ff.max(data[column])
                 mean_value = ff.mean(data[column])
@@ -72,7 +85,7 @@ def train_classifier():
         "rate": 0.5,
         "momentum": 0.5,
         "epsilon": 0.05,
-        "stop": 1
+        "stop": 1,
     }
     fc.Main(learnParameters=parameters)
 
@@ -88,7 +101,7 @@ def classify():
         "rate": 0.5,
         "momentum": 0.5,
         "epsilon": 0.05,
-        "stop": 1
+        "stop": 1,
     }
     fc.Main(classifyParameters=parameters)
 
@@ -99,7 +112,7 @@ def evaluate_classifier(report_path):
     med_counter = 0
     med_positive = 0
     med_negative = 0
-    with open(report_path, 'r') as report_file:
+    with open(report_path, "r") as report_file:
         for line in report_file:
             index = line.find("Output")
             if index != -1:
@@ -141,10 +154,10 @@ def evaluate_classifier(report_path):
     print(confusion_matrix)
     print()
 
-    '''
+    """
     TN FP
     FN TP
-    '''
+    """
     tn = confusion_matrix[0][0]
     tp = confusion_matrix[1][1]
     fn = confusion_matrix[1][0]
