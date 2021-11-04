@@ -1,0 +1,6 @@
+black
+black[jupyter]
+flake8
+ipython
+ipykernel
+isort

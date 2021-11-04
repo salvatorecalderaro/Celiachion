@@ -1,0 +1,32 @@
+{
+	"name": "Python 3",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "..",
+		"args": {
+			"PYTHON_VERSION": "3.7",
+			"REQUIREMENTS_FOLDER": "/requirements/",
+			"USER": "vscode",
+		}
+	},
+	"settings": {
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.languageServer": "Pylance",
+		"python.formatting.provider": "black",
+		"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+		"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+		"python.linting.enabled": true,
+		"python.linting.flake8Enabled": true,
+		"python.linting.mypyEnabled": false,
+		"[python]": {
+			"editor.formatOnSave": true,
+			"editor.formatOnSaveMode": "file",
+		},
+	},
+	"extensions": [
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"eamodio.gitlens",
+	],
+	"remoteUser": "vscode",
+}
